@@ -1,0 +1,182 @@
+{
+  "weeks": {
+    "week1": {
+      "id": 1,
+      "title": "1주차 스터디",
+      "description": "1주차 스터디 내용 및 활동 기록",
+      "info": {
+        "date": "2025.07.15",
+        "participants": "10명 / 12명",
+        "time": "16:00 ~ 17:00",
+        "location": "가천관 601호"
+      },
+      "activities": [
+        {
+          "title": "동아리 진행 내용 전달",
+          "content": [
+            "동아리는 2학기부터 활동 시작",
+            "매주 멘토링으로 진행하려고 계획중입니다."
+          ]
+        },
+        {
+          "title": "방학 스터디 안내",
+          "content": [
+            "원래는 격주로 진행 예정이었으나, 7월 마지막 주에 학교가 쉬는 관계로 매주 진행으로 변경 (기존 4회 -> 5회)",
+            "앞으로 남은 4회의 스터디는 첫날 오신 분들을 기준으로 진행될 예정입니다"
+          ]
+        },
+        {
+          "title": "기초 코딩테스트",
+          "content": [
+            "기초 코딩테스트 (10분)",
+            "테스트 해설 (10분)"
+          ]
+        }
+      ],
+      "learningContent": "없음",
+      "assignments": "없음",
+      "keywords": ["코딩테스트", "동아리 활동 안내", "방학 스터디 안내", "Python 기초"],
+      "stats": {
+        "attendanceRate": "83%",
+        "completionRate": "미완료"
+      },
+      "navigation": {
+        "prev": null,
+        "next": "week2"
+      }
+    },
+    "week2": {
+      "id": 2,
+      "title": "2주차 스터디",
+      "description": "2주차 스터디 내용 및 활동 기록",
+      "info": {
+        "date": "2025.07.22",
+        "participants": "0명 / 12명",
+        "time": "16:00 ~ 17:00",
+        "location": "가천관 601호"
+      },
+      "activities": [
+        {
+          "title": "Python 변수 타입",
+          "content": [
+            "int,float,str,bool 타입 학습"
+          ]
+        },
+        {
+          "title": "조건문과 반복문",
+          "content": [
+            "if-elif-else 조건문 활용",
+            "for문과 while문을 이용한 반복 처리"
+          ]
+        },
+        {
+          "title": "실습 문제 풀이",
+          "content": [
+            "간단한 알고리즘 문제 해결"
+          ]
+        }
+      ],
+      "learningContent": "없음",
+      "assignments": "없음",
+      "keywords": ["변수 타입", "조건문", "반복문"],
+      "stats": {
+        "attendanceRate": "0%",
+        "completionRate": "미완료"
+      },
+      "navigation": {
+        "prev": "week1",
+        "next": "week3"
+      }
+    },
+    "week3": {
+      "id": 3,
+      "title": "3주차 스터디",
+      "description": "3주차 스터디 내용 및 활동 기록",
+      "info": {
+        "date": "2025.08.05",
+        "participants": "0명 / 12명",
+        "time": "16:00 ~ 17:00",
+        "location": "가천관 601호"
+      },
+      "activities": [
+        {
+          "title": "데이터 자료구조",
+          "content": [
+            "list, tuple, dict 자료구조 학습"
+          ]
+        }
+      ],
+      "learningContent": "없음",
+      "assignments": "없음",
+      "keywords": ["list", "tuple", "dict"],
+      "stats": {
+        "attendanceRate": "0%",
+        "completionRate": "미완료"
+      },
+      "navigation": {
+        "prev": "week2",
+        "next": "week4"
+      }
+    },
+    "week4": {
+      "id": 4,
+      "title": "4주차 스터디",
+      "description": "4주차 스터디 내용 및 활동 기록",
+      "info": {
+        "date": "2025.08.12",
+        "participants": "0명 / 12명",
+        "time": "16:00 ~ 17:00",
+        "location": "가천관 601호"
+      },
+      "activities": [
+        {
+          "title": "디버깅 및 예외처리",
+          "content": [
+            "디버깅 및 예외처리 학습"
+          ]
+        }
+      ],
+      "learningContent": "없음",
+      "assignments": "없음",
+      "keywords": ["디버깅", "예외처리"],
+      "stats": {
+        "attendanceRate": "0%",
+        "completionRate": "미완료"
+      },
+      "navigation": {
+        "prev": "week3",
+        "next": "week5"
+      }
+    },
+    "week5": {
+      "id": 5,
+      "title": "5주차 스터디",
+      "description": "5주차 스터디 내용 및 활동 기록",
+      "info": {
+        "date": "2025.08.19",
+        "participants": "0명 / 12명",
+        "time": "16:00 ~ 17:00",
+        "location": "가천관 601호"
+      },
+      "activities": [
+        {
+          "title": "함수",
+          "content": [
+            "함수 학습"
+          ]
+        }
+      ],
+      "learningContent": "없음",
+      "assignments": "없음",
+      "keywords": ["함수"],
+      "stats": {
+        "attendanceRate": "0%",
+        "completionRate": "미완료"
+      },
+      "navigation": {
+        "prev": "week4",
+        "next": null
+      }
+    }
+  }
+} 

@@ -1,0 +1,89 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    @apply text-gray-800 overflow-x-hidden;
+  }
+  
+  /* 드래그 방지 */
+  img, a, button, input, textarea {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+  }
+  
+  img {
+    pointer-events: none;
+  }
+  
+  a img {
+    pointer-events: auto;
+  }
+}
+
+/* Custom components */
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-full font-semibold transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-primary text-white hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+  
+  .btn-large {
+    @apply px-8 py-4 text-lg;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  .spinner {
+    @apply w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .backdrop-blur-custom {
+    backdrop-filter: blur(10px);
+  }
+  
+  .disabled-record {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  
+  .disabled-record:hover {
+    @apply transform-none shadow-none;
+  }
+}
