@@ -68,10 +68,6 @@ const Header: React.FC = () => {
       className={`
         relative px-4 py-2 font-medium transition-all duration-300 
         flex items-center gap-2 group
-        ${isActive 
-          ? 'text-blue-600' 
-          : 'text-gray-700 hover:text-blue-600'
-        }
       `}
     >
       <span>{label}</span>
@@ -100,7 +96,7 @@ const Header: React.FC = () => {
           {/* 로고 */}
           <div className="logo">
             <Link to="/" className="flex items-center group" onClick={scrollToTop}>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent flex items-center gap-2 transition-all duration-300 group-hover:scale-105">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent flex items-center gap-2 transition-all duration-300">
                 <FontAwesomeIcon icon={faCode} className="text-blue-500 group-hover:rotate-12 transition-transform duration-300" />
                 COMMIT
               </h1>

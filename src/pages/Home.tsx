@@ -145,7 +145,7 @@ const Home: React.FC = () => {
       <LoadingScreen />
       <Particles />
       
-      <div className="pt-0 md:pt-16">
+      <div className="pt-0 md:pt-16 break-words break-keep">
         {/* 히어로 섹션 */}
         <section id="home" className="min-h-screen bg-gradient-primary text-white relative overflow-hidden pt-0 md:pt-24">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -230,7 +230,7 @@ const Home: React.FC = () => {
               주요 활동
             </h2>
             
-            <div className="grid gap-6">
+            <div className="grid gap-6 grid-cols-2">
               {activityCards.map((activity) => (
                 <div key={activity.id} className="group">
                   {activity.disabled ? (
@@ -243,7 +243,7 @@ const Home: React.FC = () => {
                           />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-gray-500 mb-2">
+                          <h3 className="md:text-xl font-semibold text-gray-500 mb-2">
                             {activity.title}
                           </h3>
                           <p className="text-gray-400 mb-1">
@@ -273,13 +273,13 @@ const Home: React.FC = () => {
                             />
                           </div>
                           <div>
-                            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                            <h3 className="md:text-xl font-semibold text-gray-800 mb-2">
                               {activity.title}
                             </h3>
                             <p className="text-gray-600 mb-1">
                               {activity.description}
                             </p>
-                            <span className="text-sm text-primary">
+                            <span className="text-xs md:text-sm text-primary">
                               {activity.date}
                             </span>
                           </div>
