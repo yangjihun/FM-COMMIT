@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -47,8 +47,8 @@ const Home: React.FC = () => {
   const activityCards: ActivityCard[] = [
     {
       id: 'study',
-      title: '방학 스터디',
-      description: '방학 기간 진행되는 스터디',
+      title: '여름방학 스터디',
+      description: '파이썬 기초, 프로젝트',
       date: '2025.07.15 ~ 진행중',
       icon: 'book',
       href: '/study',
@@ -317,7 +317,7 @@ const Home: React.FC = () => {
               <div className="grid md:grid-cols-1 gap-6 mb-8">
                 <div className="flex items-center justify-center gap-3 text-gray-700">
                   <FontAwesomeIcon icon={faCalendar} className="text-primary" />
-                  <span>지원 기간: 2025.08.01 ~ 2025.08.22</span>
+                  <span>지원 기간: 2025.08.01 ~ 2025.08.15</span>
                 </div>
                 <div className="flex items-center justify-center gap-3 text-gray-700">
                   <FontAwesomeIcon icon={faEnvelope} className="text-primary" />

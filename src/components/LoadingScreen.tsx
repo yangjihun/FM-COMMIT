@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const LoadingScreen: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);

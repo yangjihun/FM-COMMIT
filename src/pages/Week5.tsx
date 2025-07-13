@@ -1,4 +1,3 @@
-import React from 'react';
 import WeekDetail from '../components/WeekDetail';
 import weeksData from '../data/weeks.json';
 

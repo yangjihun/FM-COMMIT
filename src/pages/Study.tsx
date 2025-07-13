@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -15,18 +14,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faPython } from '@fortawesome/free-brands-svg-icons';
 import studyData from '../data/study.json';
-
-interface InfoCard {
-  icon: string;
-  title: string;
-  content: string;
-}
-
-interface StudyContent {
-  icon: string;
-  title: string;
-  description: string;
-}
 
 const Study: React.FC = () => {
   const getIconComponent = (iconName: string) => {
@@ -124,7 +111,7 @@ const Study: React.FC = () => {
             <div className="space-y-6">
               {/* 주요 성과 */}
               <div className="card p-6">
-                <h3 className="text-xl font-bold mb-4 text-gray-800">주요 목표표</h3>
+                <h3 className="text-xl font-bold mb-4 text-gray-800">주요 목표</h3>
                 <div className="flex flex-wrap gap-2">
                   {studyData.achievements.map((achievement, index) => (
                     <span 
