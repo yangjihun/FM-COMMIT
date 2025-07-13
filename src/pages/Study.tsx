@@ -42,7 +42,7 @@ const Study: React.FC = () => {
   };
 
   return (
-    <div className="pt-16">
+    <div className="pt-16 break-words break-keep">
       {/* 활동 헤더 */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="max-w-6xl mx-auto px-6 text-center">
@@ -55,19 +55,19 @@ const Study: React.FC = () => {
       </section>
 
       {/* 활동 정보 */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 md:py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {studyData.infoCards.map((card, index) => (
-              <div key={index} className="card p-6 text-center group hover:shadow-xl transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div key={index} className="md:card p-6 text-center group hover:shadow-xl transition-all duration-300">
+                <div className="w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                   <FontAwesomeIcon 
                     icon={getIconComponent(card.icon)} 
-                    className="text-xl text-white" 
+                    className="text-2xl md:text-3xl text-primary" 
                   />
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">{card.title}</h3>
-                <p className="text-gray-600">{card.content}</p>
+                <h3 className="md:text-lg font-semibold mb-2 text-gray-800">{card.title}</h3>
+                <p className="text-sm md:text-md text-gray-600">{card.content}</p>
               </div>
             ))}
           </div>
@@ -75,7 +75,7 @@ const Study: React.FC = () => {
       </section>
 
       {/* 활동 내용 */}
-      <section className="py-16">
+      <section className="pb-16 pt-0 md:pt-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* 메인 콘텐츠 */}
@@ -89,18 +89,18 @@ const Study: React.FC = () => {
               </div>
 
               <h3 className="text-2xl font-bold mb-6 text-gray-800">주요 활동</h3>
-              <div className="space-y-4">
+              <div className="grid grid-cols-2">
                 {studyData.studyContent.map((content, index) => (
                   <div key={index} className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
                       <FontAwesomeIcon 
                         icon={getIconComponent(content.icon)} 
-                        className="text-white" 
+                        className="text-primary text-3xl" 
                       />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">{content.title}</h4>
-                      <p className="text-gray-600">{content.description}</p>
+                      <p className="hidden md:block text-gray-600">{content.description}</p>
                     </div>
                   </div>
                 ))}

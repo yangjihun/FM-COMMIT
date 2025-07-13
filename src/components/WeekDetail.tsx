@@ -52,7 +52,7 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
   ];
 
   return (
-    <div className="pt-16">
+    <div className="pt-16 break-words break-keep">
       {/* 활동 헤더 */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="max-w-6xl mx-auto px-6 text-center">
@@ -65,19 +65,19 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
       </section>
 
       {/* 스터디 정보 */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 md:py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {infoCards.map((card, index) => (
-              <div key={index} className="card p-6 text-center group hover:shadow-xl transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div key={index} className="md:card p-6 text-center group hover:shadow-xl transition-all duration-300">
+                <div className="w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                   <FontAwesomeIcon 
                     icon={card.icon} 
-                    className="text-xl text-white" 
+                    className="text-2xl md:text-3xl text-primary" 
                   />
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">{card.title}</h3>
-                <p className="text-gray-600">{card.content}</p>
+                <h3 className="md:text-lg font-semibold mb-2 text-gray-800">{card.title}</h3>
+                <p className="text-sm md:text-md text-gray-600">{card.content}</p>
               </div>
             ))}
           </div>
@@ -85,7 +85,7 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
       </section>
 
       {/* 스터디 내용 */}
-      <section className="py-16">
+      <section className="pb-16 pt-0 md:pt-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* 메인 콘텐츠 */}
@@ -202,7 +202,7 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
               {weekData.navigation.prev ? (
                 <Link 
                   to={`/study/${weekData.navigation.prev}`}
-                  className="btn btn-secondary"
+                  className="btn btn-primary"
                 >
                   <FontAwesomeIcon icon={faArrowLeft} />
                   이전 주차
@@ -210,7 +210,7 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
               ) : (
                 <Link 
                   to="/study"
-                  className="btn btn-secondary"
+                  className="btn btn-primary"
                 >
                   <FontAwesomeIcon icon={faArrowLeft} />
                   스터디 목록
@@ -218,24 +218,17 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
               )}
             </div>
             
-            <Link 
-              to="/study"
-              className="btn btn-primary"
-            >
-              스터디 목록으로
-            </Link>
-            
             <div>
               {weekData.navigation.next ? (
                 <Link 
                   to={`/study/${weekData.navigation.next}`}
-                  className="btn btn-secondary"
+                  className="btn btn-primary"
                 >
                   다음 주차
                   <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
               ) : (
-                <div className="btn btn-secondary opacity-50 cursor-not-allowed">
+                <div className="btn btn-primary opacity-50 cursor-not-allowed">
                   완료
                 </div>
               )}

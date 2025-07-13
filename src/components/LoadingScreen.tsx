@@ -6,7 +6,7 @@ const LoadingScreen: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 1000);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, []);

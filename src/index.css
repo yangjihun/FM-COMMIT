@@ -5,6 +5,13 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* Custom base styles */
 @layer base {
   html {
