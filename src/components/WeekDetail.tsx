@@ -114,7 +114,7 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
               {/* 학습 내용 */}
               <div className="bg-blue-50 rounded-lg p-6 mb-8">
                 <h3 className="text-2xl font-bold mb-4 text-gray-800">학습 내용</h3>
-                <p className="text-gray-700 leading-relaxed">{weekData.learningContent}</p>
+                <a href={weekData.learningContent} className="text-gray-700 leading-relaxed">{weekData.learningContent}</a>
               </div>
 
               {/* 과제 및 준비사항 */}
