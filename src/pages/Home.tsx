@@ -157,7 +157,7 @@ const Home: React.FC = () => {
           <div className="mx-auto px-6 py-20">
             <div className="flex flex-col items-center justify-center">
               <div className="flex flex-col justify-center items-center md:grid grid-cols-2 gap-16 md:gap-y-40">
-                <div className="w-full flex flex-col items-center justify-center md:flex-row gap-40">
+                <div className="z-40 w-full flex flex-col items-center justify-center md:flex-row gap-40">
                   <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
                     <p className="bg-gradient-secondary bg-clip-text text-transparent mb-4 md:mb-8">
                       COMMIT
@@ -166,7 +166,7 @@ const Home: React.FC = () => {
                   </h1>
                 </div>
 
-                <div>
+                <div className="z-40">
                   <p className="text-xl opacity-90 leading-relaxed">
                     COMMIT은 금융수학과 IT 동아리로,
                     <br />
@@ -174,7 +174,7 @@ const Home: React.FC = () => {
                   </p>
                 </div>
                 
-                <div className="flex flex-row gap-8">
+                <div className="flex flex-row gap-8 z-40">
                   <a 
                     href="#activities" 
                     className="btn bg-gradient-secondary w-[140px] h-[55px] text-white"
@@ -191,7 +191,7 @@ const Home: React.FC = () => {
                   </a>
                 </div>
                 
-                <div id="stats-section" className="h-[120px] w-[300px] md:w-[550px] bg-white rounded-2xl shadow-xl p-0 grid grid-cols-3">
+                <div id="stats-section" className="z-40 h-[120px] w-[300px] md:w-[550px] bg-white rounded-2xl shadow-xl p-0 grid grid-cols-3">
                   {stats.map((stat, index) => (
                     <div key={index} className="flex flex-col justify-center items-center h-full text-center border-r border-gray-400 last:border-r-0">
                       <div className="text-3xl font-bold mb-2 text-primary">
@@ -206,7 +206,7 @@ const Home: React.FC = () => {
               </div>
               
               <div className="floating-icons">
-                <div className="absolute top-28 left-5 animate-float">
+                <div className="absolute top-28 left-5 animate-float z-0">
                   <FontAwesomeIcon icon={faJs} className="text-4xl md:text-6xl" />
                 </div>
                 <div className="absolute top-48 right-4 md:right-12 animate-float" style={{ animationDelay: '0.5s' }}>
