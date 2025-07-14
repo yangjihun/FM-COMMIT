@@ -56,18 +56,18 @@ const Study: React.FC = () => {
 
       {/* 활동 정보 */}
       <section className="py-8 md:py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="max-w-6xl mx-auto px-0 md:px-6">
+          <div className="grid grid-cols-4 md:gap-6">
             {studyData.infoCards.map((card, index) => (
-              <div key={index} className="md:card p-6 text-center group hover:shadow-xl transition-all duration-300">
+              <div key={index} className="md:card md:p-6 text-center group hover:shadow-xl transition-all duration-300">
                 <div className="w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                   <FontAwesomeIcon 
                     icon={getIconComponent(card.icon)} 
                     className="text-2xl md:text-3xl text-primary" 
                   />
                 </div>
-                <h3 className="md:text-lg font-semibold mb-2 text-gray-800">{card.title}</h3>
-                <p className="text-sm md:text-md text-gray-600">{card.content}</p>
+                <h3 className="text-xs md:text-lg font-semibold mb-2 text-gray-800 whitespace-nowrap">{card.title}</h3>
+                <p className="text-xs md:text-base text-gray-600 break-words break-keep">{card.content}</p>
               </div>
             ))}
           </div>
@@ -89,7 +89,7 @@ const Study: React.FC = () => {
               </div>
 
               <h3 className="text-2xl font-bold mb-6 text-gray-800">주요 활동</h3>
-              <div className="grid grid-cols-2">
+              <div className="grid md:grid-cols-2">
                 {studyData.studyContent.map((content, index) => (
                   <div key={index} className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
                     <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
@@ -128,21 +128,6 @@ const Study: React.FC = () => {
                         {study.week}주차 ({study.date})
                       </span>
                     </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* 주요 목표 */}
-              <div className="card p-6">
-                <h3 className="text-xl font-bold mb-4 text-gray-800">주요 목표</h3>
-                <div className="flex flex-wrap gap-2">
-                  {studyData.achievements.map((achievement, index) => (
-                    <span 
-                      key={index} 
-                      className="bg-gradient-primary text-white px-3 py-1 rounded-full text-sm"
-                    >
-                      {achievement}
-                    </span>
                   ))}
                 </div>
               </div>

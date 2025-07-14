@@ -153,7 +153,11 @@ const Home: React.FC = () => {
               <polygon points="0,0 1000,100 1000,0" fill="white" />
             </svg>
           </div>
-          
+          <div className="absolute invisible md:visible inset-0 opacity-10 pointer-events-none">
+            <svg viewBox="0 0 1 1" className="w-full h-full">
+              <polygon points="1,0 -100,100 -1000,0" fill="white" />
+            </svg>
+          </div>
           <div className="mx-auto px-6 py-20">
             <div className="flex flex-col items-center justify-center">
               <div className="flex flex-col justify-center items-center md:grid grid-cols-2 gap-16 md:gap-y-40">
@@ -224,18 +228,18 @@ const Home: React.FC = () => {
         </section>
 
         {/* 활동 기록 섹션 */}
-        <section id="activities" className="py-20">
+        <section id="activities" className="py-20 pb-32">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
               주요 활동
             </h2>
             
-            <div className="grid gap-6 grid-cols-2">
+            <div className="grid gap-6 gap-y-4 md:gap-y-6 grid-cols-1 md:grid-cols-2">
               {activityCards.map((activity) => (
                 <div key={activity.id} className="group">
                   {activity.disabled ? (
-                    <div className="disabled-record card p-6 flex items-center justify-between">
-                      <div className="flex items-center gap-6">
+                    <div className="disabled-record card px-2 md:px-6 py-2 md:py-6 flex items-center justify-between">
+                      <div className="flex items-center md:gap-6">
                         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
                           <FontAwesomeIcon 
                             icon={getIconComponent(activity.icon)} 
@@ -262,10 +266,10 @@ const Home: React.FC = () => {
                   ) : (
                     <Link 
                       to={activity.href || '#'} 
-                      className="block card p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                      className="block card px-2 md:px-6 py-2 md:py-6 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center md:gap-6">
                           <div className="w-16 h-16 flex items-center justify-center">
                             <FontAwesomeIcon 
                               icon={getIconComponent(activity.icon)} 
@@ -286,7 +290,7 @@ const Home: React.FC = () => {
                         </div>
                         <FontAwesomeIcon 
                           icon={faChevronRight} 
-                          className="text-primary group-hover:translate-x-1 transition-transform duration-300" 
+                          className="block text-primary group-hover:translate-x-1 transition-transform duration-300" 
                         />
                       </div>
                     </Link>
@@ -298,7 +302,7 @@ const Home: React.FC = () => {
         </section>
 
         {/* 가입 안내 섹션 */}
-        <section id="join" className="py-20 bg-gray-50">
+        <section id="join" className="pb-20 pt-10 bg-gray-50">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-4xl font-bold mb-12 text-gray-800">
               가입 안내

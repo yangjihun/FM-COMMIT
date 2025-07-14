@@ -65,18 +65,18 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
 
       {/* 스터디 정보 */}
       <section className="py-8 md:py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="max-w-6xl mx-auto px-0 md:px-6">
+          <div className="grid grid-cols-4 lg:grid-cols-4 md:gap-6">
             {infoCards.map((card, index) => (
-              <div key={index} className="md:card p-6 text-center group hover:shadow-xl transition-all duration-300">
+              <div key={index} className="md:card py-6 md:p-6 text-center group hover:shadow-xl transition-all duration-300">
                 <div className="w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                   <FontAwesomeIcon 
                     icon={card.icon} 
                     className="text-2xl md:text-3xl text-primary" 
                   />
                 </div>
-                <h3 className="md:text-lg font-semibold mb-2 text-gray-800">{card.title}</h3>
-                <p className="text-sm md:text-md text-gray-600">{card.content}</p>
+                <h3 className="text-xs md:text-lg font-semibold mb-2 text-gray-800 whitespace-nowrap">{card.title}</h3>
+                <p className="text-xs md:text-base text-gray-600 whitespace-nowrap">{card.content}</p>
               </div>
             ))}
           </div>

@@ -9,7 +9,7 @@
     {
       "icon": "calendar",
       "title": "기간",
-      "content": "2025.07.15 ~ 2025.08.26"
+      "content": "2025.07.15 ~ 2025.08.19"
     },
     {
       "icon": "users",
@@ -55,12 +55,6 @@
     { "week": 3, "date": "8.5", "href": "/study/week3" },
     { "week": 4, "date": "8.12", "href": "/study/week4" },
     { "week": 5, "date": "8.19", "href": "/study/week5" }
-  ],
-  "achievements": [
-    "파이썬 실력 향상",
-    "프로젝트 수행",
-    "CS 실력 향상",
-    "팀워크 강화"
   ],
   "stats": {
     "totalSessions": "5회",
