@@ -109,7 +109,30 @@ const Study: React.FC = () => {
 
             {/* 사이드바 */}
             <div className="space-y-6">
-              {/* 주요 성과 */}
+              
+              {/* 주차별 스터디 */}
+              <div className="card p-6">
+                <h3 className="text-xl font-bold mb-4 text-gray-800">주차별 스터디</h3>
+                <div className="space-y-3">
+                  {studyData.weeklyStudies.map((study) => (
+                    <Link
+                      key={study.week}
+                      to={study.href}
+                      className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-300 group"
+                    >
+                      <FontAwesomeIcon 
+                        icon={faCalendarWeek} 
+                        className="text-primary group-hover:text-secondary transition-colors duration-300" 
+                      />
+                      <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
+                        {study.week}주차 ({study.date})
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* 주요 목표 */}
               <div className="card p-6">
                 <h3 className="text-xl font-bold mb-4 text-gray-800">주요 목표</h3>
                 <div className="flex flex-wrap gap-2">
@@ -143,27 +166,7 @@ const Study: React.FC = () => {
                 </div>
               </div>
 
-              {/* 주차별 스터디 */}
-              <div className="card p-6">
-                <h3 className="text-xl font-bold mb-4 text-gray-800">주차별 스터디</h3>
-                <div className="space-y-3">
-                  {studyData.weeklyStudies.map((study) => (
-                    <Link
-                      key={study.week}
-                      to={study.href}
-                      className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-300 group"
-                    >
-                      <FontAwesomeIcon 
-                        icon={faCalendarWeek} 
-                        className="text-primary group-hover:text-secondary transition-colors duration-300" 
-                      />
-                      <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
-                        {study.week}주차 ({study.date})
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
