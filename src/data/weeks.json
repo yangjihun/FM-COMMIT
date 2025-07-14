@@ -35,7 +35,6 @@
       ],
       "learningContent": "https://www.notion.so/1-22f0369bfdd880f49284c47ca3dd3f73?source=copy_link",
       "assignments": "없음",
-      "keywords": ["코딩테스트", "동아리 활동 안내", "방학 스터디 안내", "Python 기초"],
       "stats": {
         "attendanceRate": "83%",
         "completionRate": "미완료"
@@ -78,7 +77,6 @@
       ],
       "learningContent": "https://www.notion.so/2-22f0369bfdd880e0834bec9a39c3722b?source=copy_link",
       "assignments": "없음",
-      "keywords": ["변수 타입", "조건문", "반복문"],
       "stats": {
         "attendanceRate": "0%",
         "completionRate": "미완료"
@@ -108,7 +106,6 @@
       ],
       "learningContent": "https://www.notion.so/3-22f0369bfdd8809b9ce0d50a3906d4ef?source=copy_link",
       "assignments": "없음",
-      "keywords": ["list", "tuple", "dict"],
       "stats": {
         "attendanceRate": "0%",
         "completionRate": "미완료"
@@ -138,7 +135,6 @@
       ],
       "learningContent": "https://www.notion.so/4-22f0369bfdd880a29bdadb9820c0dfbe?source=copy_link",
       "assignments": "없음",
-      "keywords": ["디버깅", "예외처리"],
       "stats": {
         "attendanceRate": "0%",
         "completionRate": "미완료"
@@ -168,7 +164,6 @@
       ],
       "learningContent": "https://www.notion.so/5-22f0369bfdd88007abe9f16655479b6e?source=copy_link",
       "assignments": "없음",
-      "keywords": ["함수"],
       "stats": {
         "attendanceRate": "0%",
         "completionRate": "미완료"

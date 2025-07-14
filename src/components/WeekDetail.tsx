@@ -160,21 +160,6 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
                 </div>
               </div>
 
-              {/* 키워드 */}
-              <div className="card p-6">
-                <h3 className="text-xl font-bold mb-4 text-gray-800">키워드</h3>
-                <div className="flex flex-wrap gap-2">
-                  {weekData.keywords.map((keyword, index) => (
-                    <span 
-                      key={index} 
-                      className="bg-gradient-primary text-white px-3 py-1 rounded-full text-sm"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
               {/* 스터디 현황 */}
               <div className="card p-6">
                 <h3 className="text-xl font-bold mb-4 text-gray-800">스터디 현황</h3>
