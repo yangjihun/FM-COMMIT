@@ -3,11 +3,11 @@ import Layout from './components/Layout';
 import RouteScrollToTop from './components/RouteScrollToTop';
 import Home from './pages/Home';
 import Study from './pages/Study';
-import Week1 from './pages/Week1';
-import Week2 from './pages/Week2';
-import Week3 from './pages/Week3';
-import Week4 from './pages/Week4';
-import Week5 from './pages/Week5';
+import Week1 from './pages/summer-semester/Week1';
+import Week2 from './pages/summer-semester/Week2';
+import Week3 from './pages/summer-semester/Week3';
+import Week4 from './pages/summer-semester/Week4';
+import Week5 from './pages/summer-semester/Week5';
 
 function App() {
   return (
