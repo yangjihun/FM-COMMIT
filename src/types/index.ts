@@ -27,7 +27,6 @@ export interface StudyWeek {
   date: string;
   title: string;
   description: string;
-  keywords: string[];
   content: StudyContent[];
   attendance?: {
     present: number;
