@@ -89,7 +89,7 @@ const WeekDetail: React.FC<WeekDetailProps> = ({ weekData }) => {
           <div className="grid lg:grid-cols-3 gap-12">
             {/* 메인 콘텐츠 */}
             <div className="lg:col-span-2">
-              <h2 className="text-3xl font-bold mb-8 text-gray-800">스터디 내용</h2>
+              <h2 className="text-3xl font-bold mb-8 text-gray-800">스터디 요약</h2>
               
               {/* 활동 내용 */}
               <div className="space-y-6 mb-12">
