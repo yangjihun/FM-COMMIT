@@ -1,5 +1,5 @@
-import WeekDetail from '../components/WeekDetail';
-import weeksData from '../data/weeks.json';
+import WeekDetail from '../../components/WeekDetail';
+import weeksData from '../../data/weeks.json';
 
 const Week2: React.FC = () => {
   const weekData = weeksData.weeks.week2;

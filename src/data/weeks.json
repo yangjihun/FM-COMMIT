@@ -21,7 +21,7 @@
         {
           "title": "방학 스터디 안내",
           "content": [
-            "원래는 격주로 진행 예정이었으나, 7월 마지막 주에 학교가 쉬는 관계로 매주 진행으로 변경 (기존 4회 -> 5회)",
+            "원래는 격주로 진행 예정이었으나, 7월 마지막 주에 학교가 쉬는 관계로 매주 진행으로 변경 (기존 4회 -> 5회로 변경)",
             "앞으로 남은 4회의 스터디는 첫날 오신 분들을 기준으로 진행될 예정입니다"
           ]
         },
@@ -33,9 +33,8 @@
           ]
         }
       ],
-      "learningContent": "없음",
+      "learningContent": "https://www.notion.so/1-22f0369bfdd880f49284c47ca3dd3f73?source=copy_link",
       "assignments": "없음",
-      "keywords": ["코딩테스트", "동아리 활동 안내", "방학 스터디 안내", "Python 기초"],
       "stats": {
         "attendanceRate": "83%",
         "completionRate": "미완료"
@@ -59,7 +58,7 @@
         {
           "title": "Python 변수 타입",
           "content": [
-            "int,float,str,bool 타입 학습"
+            "int, float, str, bool 타입 학습"
           ]
         },
         {
@@ -76,9 +75,8 @@
           ]
         }
       ],
-      "learningContent": "없음",
+      "learningContent": "https://www.notion.so/2-22f0369bfdd880e0834bec9a39c3722b?source=copy_link",
       "assignments": "없음",
-      "keywords": ["변수 타입", "조건문", "반복문"],
       "stats": {
         "attendanceRate": "0%",
         "completionRate": "미완료"
@@ -106,9 +104,8 @@
           ]
         }
       ],
-      "learningContent": "없음",
+      "learningContent": "https://www.notion.so/3-22f0369bfdd8809b9ce0d50a3906d4ef?source=copy_link",
       "assignments": "없음",
-      "keywords": ["list", "tuple", "dict"],
       "stats": {
         "attendanceRate": "0%",
         "completionRate": "미완료"
@@ -136,9 +133,8 @@
           ]
         }
       ],
-      "learningContent": "없음",
+      "learningContent": "https://www.notion.so/4-22f0369bfdd880a29bdadb9820c0dfbe?source=copy_link",
       "assignments": "없음",
-      "keywords": ["디버깅", "예외처리"],
       "stats": {
         "attendanceRate": "0%",
         "completionRate": "미완료"
@@ -166,9 +162,8 @@
           ]
         }
       ],
-      "learningContent": "없음",
+      "learningContent": "https://www.notion.so/5-22f0369bfdd88007abe9f16655479b6e?source=copy_link",
       "assignments": "없음",
-      "keywords": ["함수"],
       "stats": {
         "attendanceRate": "0%",
         "completionRate": "미완료"
