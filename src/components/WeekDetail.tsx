@@ -28,7 +28,6 @@ interface WeekData {
   }[];
   learningContent: string;
   assignments: string;
-  keywords: string[];
   stats: {
     attendanceRate: string;
     completionRate: string;
