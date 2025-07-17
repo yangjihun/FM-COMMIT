@@ -8,7 +8,7 @@
         "date": "2025.07.15",
         "participants": "10명 / 12명",
         "time": "16:00 ~ 17:00",
-        "location": "가천관 601호"
+        "location": "가천관 518호"
       },
       "activities": [
         {
@@ -38,7 +38,7 @@
       "assignments": "필기구, 공부했던 교재(필수x)",
       "stats": {
         "attendanceRate": "83%",
-        "completionRate": "미완료"
+        "completionRate": "완료"
       },
       "navigation": {
         "prev": null,
@@ -52,27 +52,28 @@
       "info": {
         "date": "2025.07.22",
         "participants": "0명 / 12명",
-        "time": "16:00 ~ 17:00",
+        "time": "15:30 ~ 17:30",
         "location": "가천관 601호"
       },
       "activities": [
         {
-          "title": "Python 변수 타입",
+          "title": "Python",
           "content": [
-            "int, float, str, bool 타입 학습"
+            "조건문 if",
+            "반복문 while, for"
           ]
         },
         {
-          "title": "조건문과 반복문",
+          "title": "금융IT프로그래밍2",
           "content": [
-            "if-elif-else 조건문 활용",
-            "for문과 while문을 이용한 반복 처리"
+            
           ]
         },
         {
-          "title": "실습 문제 풀이",
+          "title": "수리 소프트웨어 활용과 실습",
           "content": [
-            "간단한 알고리즘 문제 해결"
+            "블록체인이란?",
+            "해시함수와 블록체인 구조"
           ]
         }
       ],
@@ -94,7 +95,7 @@
       "info": {
         "date": "2025.08.05",
         "participants": "0명 / 12명",
-        "time": "16:00 ~ 17:00",
+        "time": "15:30 ~ 17:30",
         "location": "가천관 601호"
       },
       "activities": [
@@ -123,7 +124,7 @@
       "info": {
         "date": "2025.08.12",
         "participants": "0명 / 12명",
-        "time": "16:00 ~ 17:00",
+        "time": "15:30 ~ 17:30",
         "location": "가천관 601호"
       },
       "activities": [
@@ -152,7 +153,7 @@
       "info": {
         "date": "2025.08.19",
         "participants": "0명 / 12명",
-        "time": "16:00 ~ 17:00",
+        "time": "15:30 ~ 17:30",
         "location": "가천관 601호"
       },
       "activities": [
