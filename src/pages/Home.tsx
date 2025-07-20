@@ -40,7 +40,7 @@ interface StatItem {
 const Home: React.FC = () => {
   const [stats, setStats] = useState<StatItem[]>([
     { label: '멤버', value: 0, target: 18 },
-    { label: '프로젝트', value: 0, target: 0 },
+    { label: '프로젝트', value: 0, target: 2 },
     { label: '스터디', value: 0, target: 1 }
   ]);
 
@@ -66,11 +66,10 @@ const Home: React.FC = () => {
     {
       id: 'project',
       title: '팀 프로젝트',
-      description: '웹 개발 프로젝트 진행',
-      date: '준비중',
+      description: '개발 프로젝트 진행',
+      date: '진행중',
       icon: 'project-diagram',
       href: '/project',
-      disabled: true,
       status: 'upcoming'
     },
     {
