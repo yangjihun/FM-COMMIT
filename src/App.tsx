@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import RouteScrollToTop from './components/RouteScrollToTop';
 import Home from './pages/Home';
 import Study from './pages/Study';
+import Project from './pages/Project';
 import Week1 from './pages/summer-semester/Week1';
 import Week2 from './pages/summer-semester/Week2';
 import Week3 from './pages/summer-semester/Week3';
@@ -27,6 +28,14 @@ function App() {
           element={
             <Layout>
               <Study />
+            </Layout>
+          } 
+        />
+        <Route 
+          path="/project" 
+          element={
+            <Layout>
+              <Project />
             </Layout>
           } 
         />
