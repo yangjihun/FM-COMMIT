@@ -75,7 +75,7 @@ const Home: React.FC = () => {
     {
       id: 'networking',
       title: '네트워킹 행사',
-      description: '동아리 교류 및 MT',
+      description: '',
       date: '준비중',
       icon: 'users',
       href: '/networking',
