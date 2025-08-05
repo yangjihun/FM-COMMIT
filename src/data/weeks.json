@@ -102,7 +102,7 @@
         {
           "title": "Python",
           "content": [
-            "list, tuple, dict 자료구조 학습"
+            "list, slice"
           ]
         },
         {
@@ -114,9 +114,7 @@
         {
           "title": "수리 소프트웨어 활용과 실습",
           "content": [
-            "Public-key Cryptography",
-            "Bitcoin Transaction",
-            "Decentralization"
+            "PoW"
           ]
         }
       ],
