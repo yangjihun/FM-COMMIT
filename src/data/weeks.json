@@ -176,23 +176,11 @@
       "description": "5주차 스터디 내용 및 활동 기록",
       "info": {
         "date": "2025.08.19",
-        "participants": "0명 / 12명",
+        "participants": "5명 / 12명",
         "time": "15:30 ~ 17:30",
         "location": "가천관 518호"
       },
       "activities": [
-        {
-          "title": "Python",
-          "content": [
-            "함수"
-          ]
-        },
-        {
-          "title": "금융IT프로그래밍2",
-          "content": [
-            "함수"
-          ]
-        },
         {
           "title": "수리 소프트웨어 활용과 실습",
           "content": [
