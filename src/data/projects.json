@@ -42,6 +42,27 @@
       "challenges": [
         "금융데이터 분석"
       ]
+    },
+    {
+      "id": "3",
+      "title": "ZetaChain Korea Hackathon",
+      "description": "제타체인을 활용한 리스크 관리 시스템",
+      "status": "완료",
+      "progress": 100,
+      "team": ["20양지훈", "20임대복", "21이동학", "24이채연"],
+      "techStack": ["nextJS", "Python"],
+      "startDate": "2025-08-23",
+      "endDate": "2024-08-24",
+      "image": "./ZetaChain Korea Hackathon.png",
+      "category": ["블록체인"],
+      "difficulty": "중급",
+      "detailDescription": ["Monte Carlo와 VaR 기법을 활용해서 ZetaChain의 Multi Chain 자산 리스크를 관리하는 프로젝트입니다."],
+      "features": [
+        "Monte Carlo와 VaR 기법을 통한 리스크 관리"
+      ],
+      "challenges": [
+        "ZetaChain과 연결을 통해 실제 자산을 관리"
+      ]
     }
   ]
 } 

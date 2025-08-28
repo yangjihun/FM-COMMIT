@@ -39,7 +39,7 @@ interface StatItem {
 
 const Home: React.FC = () => {
   const [stats, setStats] = useState<StatItem[]>([
-    { label: '멤버', value: 0, target: 18 },
+    { label: '멤버', value: 0, target: 24 },
     { label: '프로젝트', value: 0, target: 2 },
     { label: '스터디', value: 0, target: 1 }
   ]);
@@ -49,15 +49,15 @@ const Home: React.FC = () => {
       id: 'study',
       title: '여름방학 스터디',
       description: '파이썬 기초, 프로젝트',
-      date: '2025.07.15 ~ 진행중',
+      date: '2025.07.15 ~ 8.19',
       icon: 'book',
       href: '/study',
-      status: 'active'
+      status: 'completed'
     },
     {
       id: 'regular-study',
-      title: '정기 스터디',
-      description: '매주 진행되는 정기 스터디',
+      title: '소그룹 스터디',
+      description: '소그룹별로 진행되는 스터디',
       date: '2025.09 시작 예정',
       icon: 'tools',
       disabled: true,
@@ -318,10 +318,10 @@ const Home: React.FC = () => {
               </p>
               
               <div className="grid md:grid-cols-1 gap-6 mb-8">
-                <div className="flex items-center justify-center gap-3 text-gray-700">
+                {/* <div className="flex items-center justify-center gap-3 text-gray-700">
                   <FontAwesomeIcon icon={faCalendar} className="text-primary" />
                   <span>지원 기간: 2025.08.01 ~ 2025.08.15</span>
-                </div>
+                </div> */}
                 <div className="flex items-center justify-center gap-3 text-gray-700">
                   <FontAwesomeIcon icon={faEnvelope} className="text-primary" />
                   <span>문의: yjhn0410@gmail.com</span>

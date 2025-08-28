@@ -176,33 +176,25 @@
       "description": "5주차 스터디 내용 및 활동 기록",
       "info": {
         "date": "2025.08.19",
-        "participants": "0명 / 12명",
-        "time": "15:30 ~ 17:30",
+        "participants": "6명 / 12명",
+        "time": "15:30 ~ 17:00",
         "location": "가천관 518호"
       },
       "activities": [
         {
-          "title": "Python",
+          "title": "블록체인",
           "content": [
-            "함수"
+            "블록체인과 DeFi"
           ]
         },
         {
-          "title": "금융IT프로그래밍2",
+          "title": "vibe coding",
           "content": [
-            "함수"
-          ]
-        },
-        {
-          "title": "수리 소프트웨어 활용과 실습",
-          "content": [
-            "Consensus",
-            "PoW",
-            "PoS"
+            "Lovable + Cursor를 통한 웹개발"
           ]
         }
       ],
-      "learningContent": "https://www.notion.so/5-22f0369bfdd88007abe9f16655479b6e?source=copy_link",
+      "learningContent": "-",
       "assignments": "없음",
       "stats": {
         "attendanceRate": "0%",
