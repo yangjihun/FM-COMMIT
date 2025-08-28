@@ -50,7 +50,7 @@
       "status": "완료",
       "progress": 100,
       "team": ["20양지훈", "20임대복", "21이동학", "24이채연"],
-      "techStack": ["nextJS", "Python"],
+      "techStack": ["nextJS", "Python", "TailwindCSS"],
       "startDate": "2025-08-23",
       "endDate": "2024-08-24",
       "image": "./ZetaChain Korea Hackathon.png",
