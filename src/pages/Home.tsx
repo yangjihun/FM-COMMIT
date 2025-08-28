@@ -8,8 +8,7 @@ import {
   faTools, 
   faChevronRight,
   faExternalLinkAlt,
-  faEnvelope,
-  faCalendar
+  faEnvelope
 } from '@fortawesome/free-solid-svg-icons';
 import { 
   faJs, 
