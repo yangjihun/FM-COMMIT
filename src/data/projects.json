@@ -4,7 +4,7 @@
       "id": "commit-homepage",
       "title": "Commit 홈페이지",
       "description": "Commit 홈페이지 개발 프로젝트",
-      "status": "진행중",
+      "status": "모집중",
       "progress": 50,
       "team": ["양지훈"],
       "techStack": ["React", "TypeScript", "Node.js", "TailwindCSS"],
@@ -24,27 +24,6 @@
     },
     {
       "id": "2",
-      "title": "금융데이터 분석",
-      "description": "금융데이터 분석 프로젝트",
-      "status": "기획중",
-      "progress": 0,
-      "team": ["20임대복", "21이동학", "24김나연"],
-      "techStack": ["Python"],
-      "startDate": "2025-07-21",
-      "endDate": "",
-      "image": "/mainpage.png",
-      "category": ["파이썬"],
-      "difficulty": "중급",
-      "detailDescription": ["금융데이터 분석 프로젝트입니다."],
-      "features": [
-        "금융데이터 분석"
-      ],
-      "challenges": [
-        "금융데이터 분석"
-      ]
-    },
-    {
-      "id": "3",
       "title": "ZetaChain Korea Hackathon",
       "description": "제타체인을 활용한 리스크 관리 시스템",
       "status": "완료",
