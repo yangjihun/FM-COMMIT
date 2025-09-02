@@ -8,6 +8,9 @@
     "start": "node ./src/app.js",
     "dev": "nodemon ./src/app.js"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -23,5 +26,6 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.0",
     "nodemon": "^3.1.10"
-  }
+  },
+  "devDependencies": {}
 }
