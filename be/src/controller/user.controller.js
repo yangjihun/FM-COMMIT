@@ -6,6 +6,9 @@ const userController = {};
 userController.createUser = async(req,res) => {
     try{
         let {email, name, password, level} = req.body;
+        if (!email.endsWith('@gachon.ac.kr')) {
+            throw new Error('gachon email이 아닙니다')
+        }
         const user = await User.findOne({email});
         if (user) {
             throw new Error('이미 가입된 유저입니다');
