@@ -39,6 +39,7 @@ authController.loginWithGoogle = async(req,res) => {
     }
 }
 
+
 authController.authenticate = async(req, res, next) => {
     try{
         const token = req.header('Authorization')?.replace('Bearer ', '');

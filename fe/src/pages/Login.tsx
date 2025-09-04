@@ -13,10 +13,7 @@ const Login: React.FC = () => {
               if ((window as any).handleGoogleLogin) {
                 (window as any).handleGoogleLogin(response);
               }
-            },
-            // COOP 문제 해결을 위한 설정
-            use_fedcm_for_prompt: false,
-            cancel_on_tap_outside: false
+            }
           });
 
           (window as any).google.accounts.id.renderButton(
@@ -25,9 +22,7 @@ const Login: React.FC = () => {
               theme: 'outline',
               size: 'large',
               text: 'signin_with',
-              width: 300,
-              // COOP 문제 해결을 위한 설정
-              use_fedcm_for_prompt: false
+              width: 300
             }
           );
         } catch (error) {

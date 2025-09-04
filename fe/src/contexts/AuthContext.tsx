@@ -71,6 +71,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (data.status === 'success' && data.token && data.user) {
         tokenManager.setToken(data.token);
         setUser(data.user);
+        // 홈페이지로 리다이렉트
+        window.location.href = '/';
       } else {
         alert('로그인 실패: ' + (data.error || '알 수 없는 오류'));
       }
