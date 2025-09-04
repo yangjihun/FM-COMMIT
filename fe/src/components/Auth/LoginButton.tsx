@@ -20,7 +20,10 @@ const LoginButton: React.FC<LoginButtonProps> = ({ className = '' }) => {
               if ((window as any).handleGoogleLogin) {
                 (window as any).handleGoogleLogin(response);
               }
-            }
+            },
+            // COOP 문제 해결을 위한 설정
+            use_fedcm_for_prompt: false,
+            cancel_on_tap_outside: false
           });
 
           (window as any).google.accounts.id.renderButton(
@@ -29,7 +32,9 @@ const LoginButton: React.FC<LoginButtonProps> = ({ className = '' }) => {
               theme: 'outline',
               size: 'medium',
               text: 'signin_with',
-              width: '100%'
+              width: '100%',
+              // COOP 문제 해결을 위한 설정
+              use_fedcm_for_prompt: false
             }
           );
         } catch (error) {

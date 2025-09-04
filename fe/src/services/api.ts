@@ -1,5 +1,5 @@
 // API 기본 설정
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
 // API 응답 타입 정의
 interface ApiResponse<T> {
