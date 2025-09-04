@@ -83,7 +83,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = () => {
     tokenManager.removeToken();
     setUser(null);
-    alert('로그아웃되었습니다.');
   };
 
   const value: AuthContextType = {
