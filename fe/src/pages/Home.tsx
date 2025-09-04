@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faBook, 
@@ -18,6 +17,7 @@ import {
 import { faDatabase } from '@fortawesome/free-solid-svg-icons';
 import Particles from '../components/Particles';
 import LoadingScreen from '../components/LoadingScreen';
+import { useAuth } from '../contexts/AuthContext';
 
 interface ActivityCard {
   id: string;
@@ -37,6 +37,7 @@ interface StatItem {
 }
 
 const Home: React.FC = () => {
+  const { user } = useAuth();
   const [stats, setStats] = useState<StatItem[]>([
     { label: '멤버', value: 0, target: 24 },
     { label: '프로젝트', value: 0, target: 2 },
@@ -262,9 +263,17 @@ const Home: React.FC = () => {
                       />
                     </div>
                   ) : (
-                    <Link 
-                      to={activity.href || '#'} 
-                      className="block card px-2 md:px-6 py-2 md:py-6 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    <div 
+                      onClick={() => {
+                        if (!user) {
+                          // 로그인하지 않은 사용자는 로그인 페이지로 이동
+                          window.location.href = '/login';
+                        } else {
+                          // 로그인한 사용자는 해당 페이지로 이동
+                          window.location.href = activity.href || '#';
+                        }
+                      }}
+                      className="block card px-2 md:px-6 py-2 md:py-6 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center md:gap-6">
@@ -291,7 +300,7 @@ const Home: React.FC = () => {
                           className="block text-primary group-hover:translate-x-1 transition-transform duration-300" 
                         />
                       </div>
-                    </Link>
+                    </div>
                   )}
                 </div>
               ))}
