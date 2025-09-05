@@ -63,7 +63,7 @@ const Login: React.FC = () => {
           <p className="text-gray-600">COMMIT의 주요 활동을 보려면 로그인해주세요.</p>
         </div>
         
-        <div className="space-y-6">
+        <div className="space-y-6 flex flex-col items-center justify-center">
           <div className="text-center">
             <div id="google-signin-button-login"></div>
           </div>

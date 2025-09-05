@@ -74,7 +74,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         // 홈페이지로 리다이렉트
         window.location.href = '/';
       } else {
-        alert('로그인 실패: ' + (data.error || '알 수 없는 오류'));
+        alert(data.error || '알 수 없는 오류');
       }
     } catch (error) {
       console.error('로그인 오류:', error);
