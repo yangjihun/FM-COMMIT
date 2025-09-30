@@ -9,6 +9,7 @@ import Week2 from '../pages/summer-semester/Week2';
 import Week3 from '../pages/summer-semester/Week3';
 import Week4 from '../pages/summer-semester/Week4';
 import Week5 from '../pages/summer-semester/Week5';
+import RegularStudy from "../pages/RegularStudy";
 import PrivateRoute from '../components/PrivateRoute';
 
 const AppRouter: React.FC = () => {
@@ -24,6 +25,11 @@ const AppRouter: React.FC = () => {
             <Route path="/project" element={
                 <PrivateRoute>
                     <Project />
+                </PrivateRoute>
+            } />
+            <Route path="/regular-study" element={
+                <PrivateRoute>
+                    <RegularStudy />
                 </PrivateRoute>
             } />
             <Route path="/study/week1" element={

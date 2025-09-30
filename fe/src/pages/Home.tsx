@@ -58,10 +58,10 @@ const Home: React.FC = () => {
       id: 'regular-study',
       title: '소그룹 스터디',
       description: '소그룹별로 진행되는 스터디',
-      date: '2025.09 시작 예정',
+      date: '10.13 ~ 12.12',
       icon: 'tools',
-      disabled: true,
-      status: 'upcoming'
+      href: '/regular-study',
+      status: 'completed'
     },
     {
       id: 'project',
