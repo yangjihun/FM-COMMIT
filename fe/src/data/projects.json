@@ -23,7 +23,91 @@
       ]
     },
     {
+      "id": "1",
+      "title": "팀 프로젝트 1조",
+      "description": "팀 프로젝트 1조",
+      "status": "진행중",
+      "progress": 0,
+      "team": ["22박상민", "23최서현", "25김태균"],
+      "techStack": ["IT"],
+      "startDate": "2025-9-30",
+      "endDate": "",
+      "image": "/mainpage.png",
+      "category": ["init"],
+      "difficulty": "중급",
+      "detailDescription": [""],
+      "features": [
+        ""
+      ],
+      "challenges": [
+        ""
+      ]
+    },
+    {
       "id": "2",
+      "title": "팀 프로젝트 2조",
+      "description": "팀 프로젝트 2조",
+      "status": "진행중",
+      "progress": 0,
+      "team": ["21이동학", "24박지민", "25최재윤"],
+      "techStack": ["IT"],
+      "startDate": "2025-9-30",
+      "endDate": "",
+      "image": "/mainpage.png",
+      "category": ["init"],
+      "difficulty": "중급",
+      "detailDescription": [""],
+      "features": [
+        ""
+      ],
+      "challenges": [
+        ""
+      ]
+    },
+    {
+      "id": "3",
+      "title": "팀 프로젝트 3조",
+      "description": "팀 프로젝트 3조",
+      "status": "진행중",
+      "progress": 0,
+      "team": ["24이채연", "22박지용", "25차다은"],
+      "techStack": ["IT"],
+      "startDate": "2025-9-30",
+      "endDate": "",
+      "image": "/mainpage.png",
+      "category": ["init"],
+      "difficulty": "중급",
+      "detailDescription": [""],
+      "features": [
+        ""
+      ],
+      "challenges": [
+        ""
+      ]
+    },
+    {
+      "id": "4",
+      "title": "팀 프로젝트 4조",
+      "description": "팀 프로젝트 4조",
+      "status": "진행중",
+      "progress": 0,
+      "team": ["21노영익", "24김나연", "25김시경"],
+      "techStack": ["IT"],
+      "startDate": "2025-9-30",
+      "endDate": "",
+      "image": "/mainpage.png",
+      "category": ["init"],
+      "difficulty": "중급",
+      "detailDescription": [""],
+      "features": [
+        ""
+      ],
+      "challenges": [
+        ""
+      ]
+    },
+    {
+      "id": "6",
       "title": "ZetaChain Korea Hackathon",
       "description": "제타체인을 활용한 리스크 관리 시스템",
       "status": "완료",

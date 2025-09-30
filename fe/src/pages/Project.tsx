@@ -78,7 +78,7 @@ const Project: React.FC = () => {
   return (
     <>
       <section className="bg-gradient-primary text-white py-20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
+        <div className="pt-16 max-w-6xl mx-auto px-6 text-center">
           <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
             <FontAwesomeIcon icon={faProjectDiagram} className="text-3xl" />
           </div>
