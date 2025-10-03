@@ -123,11 +123,11 @@ const Project: React.FC = () => {
                 className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer overflow-hidden"
                 onClick={() => setSelectedProject(project)}
               >
-                <div className="relative">
+                <div className="relative flex items-center justify-center">
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-48 object-cover"
+                    className="max-w-64 max-h-48 object-cover"
                   />
                   <div className="absolute top-4 left-4">
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(project.status)}`}>
@@ -223,11 +223,11 @@ const Project: React.FC = () => {
               <div className="p-6">
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* 왼쪽: 프로젝트 이미지 및 기본 정보 */}
-                  <div>
+                  <div className='flex flex-col items-center justify-center'>
                     <img 
                       src={selectedProject.image} 
                       alt={selectedProject.title}
-                      className="w-full h-64 object-cover rounded-lg mb-6"
+                      className="max-w-64 max-h-64 object-cover rounded-lg mb-6"
                     />
                     
                     <div className="space-y-4">
