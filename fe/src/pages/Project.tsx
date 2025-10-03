@@ -7,7 +7,6 @@ import {
   faCalendar,
   faCode,
   faCheck,
-  faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
 import projectsData from '../data/projects.json';
 
@@ -306,21 +305,6 @@ const Project: React.FC = () => {
                           <li key={index} className="flex items-start gap-2 text-gray-600">
                             <span className="text-green-500">•</span>
                             {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
-                        <FontAwesomeIcon icon={faExclamationTriangle} />
-                        기술적 과제
-                      </h3>
-                      <ul className="space-y-2">
-                        {selectedProject.challenges.map((challenge, index) => (
-                          <li key={index} className="flex items-start gap-2 text-gray-600">
-                            <span className="text-orange-500">•</span>
-                            {challenge}
                           </li>
                         ))}
                       </ul>
