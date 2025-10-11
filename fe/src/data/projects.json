@@ -45,7 +45,7 @@
     },
     {
       "id": "2",
-      "title": "팀 프로젝트 2조",
+      "title": "[2조] 더치페이 서비스",
       "description": "영수증 한 장이면 끝나는 더치페이",
       "status": "진행중",
       "progress": 5,
@@ -115,20 +115,21 @@
     },
     {
       "id": "5",
-      "title": "팀 프로젝트 5조",
-      "description": "팀 프로젝트 5조",
+      "title": "[5조] 열정의 5조",
+      "description": "연령대별 카드 소비 트렌드 분석",
       "status": "진행중",
-      "progress": 0,
+      "progress": 5,
       "team": ["24나수경", "24전유빈", "25이승혁"],
-      "techStack": ["IT"],
+      "techStack": ["금융", "데이터"],
       "startDate": "2025-9-30",
       "endDate": "",
-      "image": "/mainpage.png",
-      "category": ["init"],
+      "image": "/team5.png",
+      "category": ["금융", "데이터"],
       "difficulty": "중급",
-      "detailDescription": [""],
+      "detailDescription": ["연령대별 카드 소비 트렌드 분석 후, 해당 데이터를 활용해 머신 러닝 모델을 학습시킨다."],
       "features": [
-        ""
+        "공공데이터를 통해 연령대별 카드소비 트렌드를 분석하고, 소비 패턴을 입력하면 연령대를 예측할 수 있도록 머신러닝 모델을 학습시킨다.",
+        "분석한 내용들을 시각화해서 한 눈에 볼 수 있도록 정리한다."
       ],
       "challenges": [
         ""
@@ -140,7 +141,7 @@
       "description": "제타체인을 활용한 리스크 관리 시스템",
       "status": "완료",
       "progress": 100,
-      "team": ["20양지훈", "20임대복", "21이동학", "24이채연"],
+      "team": ["20임대복", "20양지훈", "21이동학", "24이채연"],
       "techStack": ["nextJS", "Python", "TailwindCSS"],
       "startDate": "2025-08-23",
       "endDate": "2024-08-24",

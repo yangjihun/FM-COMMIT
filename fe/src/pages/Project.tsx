@@ -181,7 +181,7 @@ const Project: React.FC = () => {
                   <div className="flex items-center justify-between text-sm text-gray-500">
                     <div className="flex items-center gap-1">
                       <FontAwesomeIcon icon={faUsers} />
-                      <span>{project.team.length}명</span>
+                      <span>{project.team[0]} 외 {project.team.length - 1}명</span>
                     </div>
                     <span>{project.category.join(', ')}</span>
                   </div>
