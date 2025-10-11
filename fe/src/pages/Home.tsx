@@ -40,7 +40,7 @@ const Home: React.FC = () => {
   const { user } = useAuth();
   const [stats, setStats] = useState<StatItem[]>([
     { label: '멤버', value: 0, target: 27 },
-    { label: '프로젝트', value: 0, target: 6 },
+    { label: '프로젝트', value: 0, target: 7 },
     { label: '스터디', value: 0, target: 3 }
   ]);
 
