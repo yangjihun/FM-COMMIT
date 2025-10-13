@@ -94,20 +94,23 @@
     },
     {
       "id": "4",
-      "title": "팀 프로젝트 4조",
-      "description": "팀 프로젝트 4조",
+      "title": "[4조] 내잔고를 부탁해",
+      "description": "주식 시장 실시간 데이터를 활용해 자동으로 매수,매도 의사결정을 수행하는 시스템 개발",
       "status": "진행중",
-      "progress": 0,
+      "progress": 5,
       "team": ["21노영익", "24김나연", "25김시경"],
-      "techStack": ["IT"],
+      "techStack": ["금융", "데이터", "알고리즘"],
       "startDate": "2025-9-30",
       "endDate": "",
       "image": "/mainpage.png",
-      "category": ["init"],
+      "category": ["금융", "데이터", "알고리즘"],
       "difficulty": "중급",
-      "detailDescription": [""],
+      "detailDescription": ["본 프로젝트는 개인 투자자의 입장에서 감정에 휘둘리지 않는 데이터 기반의 의사결정을 바탕으로 투자를 진행하기 위해 자동화된 매매 시스템을 구축하고자 한다."],
       "features": [
-        ""
+        "실시간 주가 데이터 수집",
+        "매매 전략 알고리즘 설계",
+        "전략 시뮬레이션 기능 구현",
+        "시각화"
       ],
       "challenges": [
         ""
