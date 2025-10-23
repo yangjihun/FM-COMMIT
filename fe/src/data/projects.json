@@ -1,6 +1,27 @@
 {
   "projects": [
     {
+      "id": "7",
+      "title": "RE:MIT",
+      "description": "공개 예정",
+      "status": "진행중",
+      "progress": 10,
+      "team": ["20양지훈", "23최서현", "24이채연"],
+      "techStack": ["PHP", "Laravel", "SCSS"],
+      "startDate": "2025-10-27",
+      "endDate": "2025-11-09",
+      "image": "./remit.png",
+      "category": ["웹 개발"],
+      "difficulty": "고급",
+      "detailDescription": ["공개 예정"],
+      "features": [
+        "공개 예정"
+      ],
+      "challenges": [
+        "공개 예정"
+      ]
+    },
+    {
       "id": "commit-homepage",
       "title": "Commit 홈페이지",
       "description": "Commit 홈페이지 개발 프로젝트",
@@ -147,7 +168,7 @@
       "team": ["20임대복", "20양지훈", "21이동학", "24이채연"],
       "techStack": ["nextJS", "Python", "TailwindCSS"],
       "startDate": "2025-08-23",
-      "endDate": "2024-08-24",
+      "endDate": "2025-08-24",
       "image": "./ZetaChain Korea Hackathon.png",
       "category": ["블록체인"],
       "difficulty": "중급",

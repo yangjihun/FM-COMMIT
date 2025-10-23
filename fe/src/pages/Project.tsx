@@ -120,7 +120,7 @@ const Project: React.FC = () => {
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer overflow-hidden"
+                className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer overflow-hidden ${project.id === '7' ? 'bg-[#FFD23A]' : ''}`}
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="relative flex items-center justify-center">
@@ -157,7 +157,7 @@ const Project: React.FC = () => {
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div 
-                        className="bg-primary h-2 rounded-full transition-all duration-300"
+                        className={`h-2 rounded-full transition-all duration-300 ${project.id === '7' ? 'bg-[#FFB60A]' : 'bg-primary'}`}
                         style={{ width: `${project.progress}%` }}
                       ></div>
                     </div>
@@ -205,10 +205,10 @@ const Project: React.FC = () => {
             onClick={() => setSelectedProject(null)}
           >
             <div 
-              className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              className={`bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto ${selectedProject.id === '7' ? 'bg-[#FFD23A]' : ''}`}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center">
+              <div className={`sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center ${selectedProject.id === '7' ? 'bg-[#FFD23A]  border-yellow-200' : ''}`}>
                 <h2 className="text-2xl font-bold text-gray-800">
                   {selectedProject.title}
                 </h2>
@@ -257,7 +257,7 @@ const Project: React.FC = () => {
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-3">
                           <div 
-                            className="bg-primary h-3 rounded-full"
+                            className={`h-3 rounded-full ${selectedProject.id === '7' ? 'bg-[#FFB60A]' : 'bg-primary'}`}
                             style={{ width: `${selectedProject.progress}%` }}
                           ></div>
                         </div>
