@@ -120,7 +120,7 @@ const Project: React.FC = () => {
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer overflow-hidden ${project.id === '7' ? 'bg-[#FFD23A]' : ''}`}
+                className={`rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer overflow-hidden ${project.id === '7' ? 'bg-[#FFD23A]' : 'bg-white'}`}
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="relative flex items-center justify-center">
@@ -166,7 +166,7 @@ const Project: React.FC = () => {
                   {/* 기술 스택 */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.techStack.slice(0, 3).map((tech, index) => (
-                      <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                      <span key={index} className={`px-2 py-1 text-gray-700 text-xs rounded ${project.id === '7' ? 'bg-[#FFC20A] text-yellow-700' : 'bg-gray-100'}`}>
                         {tech}
                       </span>
                     ))}
@@ -205,10 +205,10 @@ const Project: React.FC = () => {
             onClick={() => setSelectedProject(null)}
           >
             <div 
-              className={`bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto ${selectedProject.id === '7' ? 'bg-[#FFD23A]' : ''}`}
+              className={`rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto ${selectedProject.id === '7' ? 'bg-[#FFD23A]' : 'bg-white'}`}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className={`sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center ${selectedProject.id === '7' ? 'bg-[#FFD23A]  border-yellow-200' : ''}`}>
+              <div className={`sticky top-0border-b border-gray-200 p-6 flex justify-between items-center ${selectedProject.id === '7' ? 'bg-[#FFD23A]  border-yellow-200' : 'bg-white'}`}>
                 <h2 className="text-2xl font-bold text-gray-800">
                   {selectedProject.title}
                 </h2>
@@ -288,7 +288,7 @@ const Project: React.FC = () => {
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         {selectedProject.techStack.map((tech, index) => (
-                          <span key={index} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+                          <span key={index} className={`px-3 py-1 text-blue-700 rounded-full text-sm ${selectedProject.id === '7' ? 'bg-[#FFC20A] text-yellow-700' : 'bg-blue-100'}`}>
                             {tech}
                           </span>
                         ))}
