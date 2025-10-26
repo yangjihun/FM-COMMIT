@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "id": "commit-homepage",
+      "title": "파이썬 스터디",
+      "description": "파이썬을 학습하는 스터디",
+      "status": "모집중",
+      "startDate": "2025-10-13",
+      "endDate": "",
+      "image": "/Python.png",
+      "category": ["파이썬"],
+      "link": "https://open.kakao.com/o/gC8c33Th",
+      "team": 10
+    },
+    {
+      "id": "2",
+      "title": "C언어 스터디",
+      "description": "C언어를 학습하는 스터디",
+      "status": "모집중",
+      "startDate": "2025-10-13",
+      "endDate": "",
+      "image": "./C.png",
+      "category": ["C언어"],
+      "link": "https://open.kakao.com/o/gWKG13Th",
+      "team": 10
+    },
+    {
+      "id": "3",
+      "title": "금융IT프로그래밍2 스터디",
+      "description": "금융IT프로그래밍2를 학습하는 스터디",
+      "status": "모집중",
+      "startDate": "2025-10-13",
+      "endDate": "",
+      "image": "./excel.png",
+      "category": ["excel"],
+      "link": "https://open.kakao.com/o/gGuL63Th",
+      "team": 10
+    }
+  ]
+} 

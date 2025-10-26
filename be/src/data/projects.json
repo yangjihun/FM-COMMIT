@@ -1,0 +1,185 @@
+{
+  "projects": [
+    {
+      "id": "7",
+      "title": "RE:MIT",
+      "description": "공개 예정",
+      "status": "진행중",
+      "progress": 10,
+      "team": ["20양지훈", "23최서현", "24이채연"],
+      "techStack": ["PHP", "Laravel", "SCSS"],
+      "startDate": "2025-10-27",
+      "endDate": "2025-11-09",
+      "image": "./remit.png",
+      "category": ["웹 개발"],
+      "difficulty": "고급",
+      "detailDescription": ["공개 예정"],
+      "features": [
+        "공개 예정"
+      ],
+      "challenges": [
+        "공개 예정"
+      ]
+    },
+    {
+      "id": "commit-homepage",
+      "title": "Commit 홈페이지",
+      "description": "Commit 홈페이지 개발 프로젝트",
+      "status": "모집중",
+      "progress": 50,
+      "team": ["양지훈"],
+      "techStack": ["React", "TypeScript", "Node.js", "TailwindCSS"],
+      "startDate": "2025-07-13",
+      "endDate": "",
+      "image": "/mainpage.png",
+      "category": ["웹 개발"],
+      "difficulty": "고급",
+      "detailDescription": ["Commit 홈페이지 개발 프로젝트입니다."],
+      "features": [
+        "홈페이지 개발"
+      ],
+      "challenges": [
+        "로그인 구현",
+        "DB 연동"
+      ]
+    },
+    {
+      "id": "1",
+      "title": "[1조] 금쪽이",
+      "description": "초등학생도 이해하는 금융 사전",
+      "status": "진행중",
+      "progress": 5,
+      "team": ["22박상민", "23최서현", "25김태균"],
+      "techStack": ["금융", "교육", "데이터", "AI"],
+      "startDate": "2025-9-30",
+      "endDate": "",
+      "image": "/mainpage.png",
+      "category": ["금융", "교육","데이터","AI"],
+      "difficulty": "중급",
+      "detailDescription": ["어려운 금융 용어를 쉬운 비유와 실생활 용례, 중요성 설명으로 해설해주는 대화형(챗봇) 금융 사전 서비스입니다."],
+      "features": [
+        "금융 용어 답변데이터(FAQ)를 기반으로 챗봇 서비스를 구현하고, 답변에 실제 기사 용례와 해당 용어가 중요한 이유 등을 추가하여 이해도를 높입니다.", "기존 챗봇의 경쟁력을 확보하기 위해 쉬운 비유와 실용적인 정보를 결합한 동적 금융 사전의 역할을 수행합니다."
+      ],
+      "challenges": [
+        ""
+      ]
+    },
+    {
+      "id": "2",
+      "title": "[2조] 더치페이 서비스",
+      "description": "영수증 한 장이면 끝나는 더치페이",
+      "status": "진행중",
+      "progress": 5,
+      "team": ["21이동학", "24박지민", "25최재윤"],
+      "techStack": ["금융", "SW"],
+      "startDate": "2025-9-30",
+      "endDate": "",
+      "image": "/mainpage.png",
+      "category": ["금융", "SW"],
+      "difficulty": "중급",
+      "detailDescription": ["영수증 자동 인식(OCR), AI 금액 분배 알고리즘, 모의뱅킹 송금을 연동한 스마트 정산플랫폼 서비스입니다."],
+      "features": [
+        "AI 자동 정산 기능",
+        "영수증 OCR(문자 인식)으로 결제 내역을 자동 인식",
+        "참여자별 금액을 AI가 자동 분배 (인원 수, 메뉴별 금액, 비율 설정 가능)",
+        "간편 송금 연동",
+        "모의API를 활용하여 자동 송금 요청 기능",
+        "잔액 부족 시 \"미정산 내역\"으로 기록 후 알림 전송",
+        "소비 패턴 분석 & 개인 리포트 제공",
+        "매월 더치페이 내역 기반으로 \"누구와 가장 자주 소비했는가\", \"평균 지출액\" 등 자동 통계 리포트"
+      ],
+      "challenges": [
+        ""
+      ]
+    },
+    {
+      "id": "3",
+      "title": "[3조] 🦖 DINO SAVE – 절약으로 나만의 공룡 키우기!",
+      "description": "사용자의 절약률이 높을수록 공룡이 성장하는 행동 기반 금융 습관 개선 서비스",
+      "status": "진행중",
+      "progress": 5,
+      "team": ["24이채연", "22박지용", "25차다은"],
+      "techStack": ["금융", "블록체인", "데이터"],
+      "startDate": "2025-9-30",
+      "endDate": "",
+      "image": "/team3.jpeg",
+      "category": ["금융", "블록체인", "데이터"],
+      "difficulty": "중급",
+      "detailDescription": ["사용자의 소비 데이터를 기반으로 절약률을 계산하고 공룡 캐릭터의 성장으로 시각화하는 금융 피트니스 서비스입니다.","절약률에 따라 포인트가 지급되고 이 포인트는 블록체인 구조로 투명하게 기록되어 신뢰성을 확보합니다."],
+      "features": [
+        "사용자의 소비/수입 데이터를 기반으로 매주 절약률을 자동 계산",
+        "사진 인증 시스템으로 친구와 절약 활동을 공유하고 성장 속도 비교"
+      ],
+      "challenges": [
+        ""
+      ]
+    },
+    {
+      "id": "4",
+      "title": "[4조] 내잔고를 부탁해",
+      "description": "주식 시장 실시간 데이터를 활용해 자동으로 매수,매도 의사결정을 수행하는 시스템 개발",
+      "status": "진행중",
+      "progress": 5,
+      "team": ["21노영익", "24김나연", "25김시경"],
+      "techStack": ["금융", "데이터", "알고리즘"],
+      "startDate": "2025-9-30",
+      "endDate": "",
+      "image": "/mainpage.png",
+      "category": ["금융", "데이터", "알고리즘"],
+      "difficulty": "중급",
+      "detailDescription": ["본 프로젝트는 개인 투자자의 입장에서 감정에 휘둘리지 않는 데이터 기반의 의사결정을 바탕으로 투자를 진행하기 위해 자동화된 매매 시스템을 구축하고자 한다."],
+      "features": [
+        "실시간 주가 데이터 수집",
+        "매매 전략 알고리즘 설계",
+        "전략 시뮬레이션 기능 구현",
+        "시각화"
+      ],
+      "challenges": [
+        ""
+      ]
+    },
+    {
+      "id": "5",
+      "title": "[5조] 카드깡단",
+      "description": "연령대별 카드 소비 트렌드 분석",
+      "status": "진행중",
+      "progress": 5,
+      "team": ["24나수경", "24전유빈", "25이승혁"],
+      "techStack": ["금융", "데이터"],
+      "startDate": "2025-9-30",
+      "endDate": "",
+      "image": "/team5.png",
+      "category": ["금융", "데이터"],
+      "difficulty": "중급",
+      "detailDescription": ["연령대별 카드 소비 트렌드 분석 후, 해당 데이터를 활용해 머신 러닝 모델을 학습시킨다."],
+      "features": [
+        "공공데이터를 통해 연령대별 카드소비 트렌드를 분석하고, 소비 패턴을 입력하면 연령대를 예측할 수 있도록 머신러닝 모델을 학습시킨다.",
+        "분석한 내용들을 시각화해서 한 눈에 볼 수 있도록 정리한다."
+      ],
+      "challenges": [
+        ""
+      ]
+    },
+    {
+      "id": "6",
+      "title": "ZetaChain Korea Hackathon",
+      "description": "제타체인을 활용한 리스크 관리 시스템",
+      "status": "완료",
+      "progress": 100,
+      "team": ["20임대복", "20양지훈", "21이동학", "24이채연"],
+      "techStack": ["nextJS", "Python", "TailwindCSS"],
+      "startDate": "2025-08-23",
+      "endDate": "2025-08-24",
+      "image": "./ZetaChain Korea Hackathon.png",
+      "category": ["블록체인"],
+      "difficulty": "중급",
+      "detailDescription": ["Monte Carlo와 VaR 기법을 활용해서 ZetaChain의 Multi Chain 자산 리스크를 관리하는 프로젝트입니다."],
+      "features": [
+        "Monte Carlo와 VaR 기법을 통한 리스크 관리"
+      ],
+      "challenges": [
+        "ZetaChain과 연결을 통해 실제 자산을 관리"
+      ]
+    }
+  ]
+} 

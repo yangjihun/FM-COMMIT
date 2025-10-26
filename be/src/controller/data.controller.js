@@ -1,14 +1,16 @@
-const fs = require('fs');
-const path = require('path');
+const { Types } = require('mongoose');
+const Project = require('../models/Project');
+const RegularStudy = require('../models/RegularStudy');
+const Study = require('../models/Study');
 
 const dataController = {};
+const ensureProjectId = (payload = {}) => payload.id || new Types.ObjectId().toString();
 
 // 프로젝트 데이터 관리
 dataController.getProjects = async(req, res) => {
     try {
-        const filePath = path.join(__dirname, '../../fe/src/data/projects.json');
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        res.status(200).json({status: 'success', data: data.projects});
+        const projects = await Project.find({});
+        res.status(200).json({status: 'success', data: projects});
     } catch(error) {
         res.status(500).json({status: 'fail', error: error.message});
     }
@@ -17,10 +19,16 @@ dataController.getProjects = async(req, res) => {
 dataController.updateProjects = async(req, res) => {
     try {
         const {projects} = req.body;
-        const filePath = path.join(__dirname, '../../fe/src/data/projects.json');
-        
-        const data = {projects};
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        if (!Array.isArray(projects)) {
+            return res.status(400).json({status: 'fail', error: 'projects payload must be an array'});
+        }
+
+        await Project.deleteMany({});
+        const normalizedProjects = projects.map(project => ({
+            ...project,
+            id: ensureProjectId(project)
+        }));
+        await Project.insertMany(normalizedProjects);
         
         res.status(200).json({status: 'success', message: 'Projects updated successfully'});
     } catch(error) {
@@ -30,15 +38,10 @@ dataController.updateProjects = async(req, res) => {
 
 dataController.addProject = async(req, res) => {
     try {
-        const newProject = req.body;
-        const filePath = path.join(__dirname, '../../fe/src/data/projects.json');
+        const payload = {...req.body, id: ensureProjectId(req.body)};
+        const project = await Project.create(payload);
         
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        data.projects.push(newProject);
-        
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-        
-        res.status(200).json({status: 'success', message: 'Project added successfully'});
+        res.status(200).json({status: 'success', message: 'Project added successfully', data: project});
     } catch(error) {
         res.status(500).json({status: 'fail', error: error.message});
     }
@@ -48,19 +51,13 @@ dataController.updateProject = async(req, res) => {
     try {
         const {id} = req.params;
         const updatedProject = req.body;
-        const filePath = path.join(__dirname, '../../fe/src/data/projects.json');
+        const project = await Project.findOneAndUpdate({id}, updatedProject, {new: true});
         
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        const projectIndex = data.projects.findIndex(project => project.id === id);
-        
-        if (projectIndex === -1) {
+        if (!project) {
             return res.status(404).json({status: 'fail', error: 'Project not found'});
         }
         
-        data.projects[projectIndex] = {...data.projects[projectIndex], ...updatedProject};
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-        
-        res.status(200).json({status: 'success', message: 'Project updated successfully'});
+        res.status(200).json({status: 'success', message: 'Project updated successfully', data: project});
     } catch(error) {
         res.status(500).json({status: 'fail', error: error.message});
     }
@@ -69,12 +66,11 @@ dataController.updateProject = async(req, res) => {
 dataController.deleteProject = async(req, res) => {
     try {
         const {id} = req.params;
-        const filePath = path.join(__dirname, '../../fe/src/data/projects.json');
+        const project = await Project.findOneAndDelete({id});
         
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        data.projects = data.projects.filter(project => project.id !== id);
-        
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        if (!project) {
+            return res.status(404).json({status: 'fail', error: 'Project not found'});
+        }
         
         res.status(200).json({status: 'success', message: 'Project deleted successfully'});
     } catch(error) {
@@ -85,9 +81,8 @@ dataController.deleteProject = async(req, res) => {
 // 스터디 데이터 관리
 dataController.getStudy = async(req, res) => {
     try {
-        const filePath = path.join(__dirname, '../../fe/src/data/study.json');
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        res.status(200).json({status: 'success', data});
+        const study = await Study.findOne({});
+        res.status(200).json({status: 'success', data: study});
     } catch(error) {
         res.status(500).json({status: 'fail', error: error.message});
     }
@@ -96,9 +91,7 @@ dataController.getStudy = async(req, res) => {
 dataController.updateStudy = async(req, res) => {
     try {
         const updatedData = req.body;
-        const filePath = path.join(__dirname, '../../fe/src/data/study.json');
-        
-        fs.writeFileSync(filePath, JSON.stringify(updatedData, null, 2));
+        await Study.findOneAndUpdate({}, updatedData, {upsert: true, new: true});
         
         res.status(200).json({status: 'success', message: 'Study data updated successfully'});
     } catch(error) {
@@ -109,9 +102,8 @@ dataController.updateStudy = async(req, res) => {
 // 정기 스터디 데이터 관리
 dataController.getRegularStudy = async(req, res) => {
     try {
-        const filePath = path.join(__dirname, '../../fe/src/data/regularStudy.json');
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        res.status(200).json({status: 'success', data: data.projects});
+        const studies = await RegularStudy.find({});
+        res.status(200).json({status: 'success', data: studies});
     } catch(error) {
         res.status(500).json({status: 'fail', error: error.message});
     }
@@ -120,10 +112,16 @@ dataController.getRegularStudy = async(req, res) => {
 dataController.updateRegularStudy = async(req, res) => {
     try {
         const {projects} = req.body;
-        const filePath = path.join(__dirname, '../../fe/src/data/regularStudy.json');
+        if (!Array.isArray(projects)) {
+            return res.status(400).json({status: 'fail', error: 'projects payload must be an array'});
+        }
         
-        const data = {projects};
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        await RegularStudy.deleteMany({});
+        const normalized = projects.map(study => ({
+            ...study,
+            id: ensureProjectId(study)
+        }));
+        await RegularStudy.insertMany(normalized);
         
         res.status(200).json({status: 'success', message: 'Regular study data updated successfully'});
     } catch(error) {
@@ -133,15 +131,10 @@ dataController.updateRegularStudy = async(req, res) => {
 
 dataController.addRegularStudy = async(req, res) => {
     try {
-        const newStudy = req.body;
-        const filePath = path.join(__dirname, '../../fe/src/data/regularStudy.json');
+        const payload = {...req.body, id: ensureProjectId(req.body)};
+        const study = await RegularStudy.create(payload);
         
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        data.projects.push(newStudy);
-        
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-        
-        res.status(200).json({status: 'success', message: 'Regular study added successfully'});
+        res.status(200).json({status: 'success', message: 'Regular study added successfully', data: study});
     } catch(error) {
         res.status(500).json({status: 'fail', error: error.message});
     }
@@ -151,19 +144,13 @@ dataController.updateRegularStudyItem = async(req, res) => {
     try {
         const {id} = req.params;
         const updatedStudy = req.body;
-        const filePath = path.join(__dirname, '../../fe/src/data/regularStudy.json');
+        const study = await RegularStudy.findOneAndUpdate({id}, updatedStudy, {new: true});
         
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        const studyIndex = data.projects.findIndex(study => study.id === id);
-        
-        if (studyIndex === -1) {
+        if (!study) {
             return res.status(404).json({status: 'fail', error: 'Study not found'});
         }
         
-        data.projects[studyIndex] = {...data.projects[studyIndex], ...updatedStudy};
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-        
-        res.status(200).json({status: 'success', message: 'Regular study updated successfully'});
+        res.status(200).json({status: 'success', message: 'Regular study updated successfully', data: study});
     } catch(error) {
         res.status(500).json({status: 'fail', error: error.message});
     }
@@ -172,12 +159,11 @@ dataController.updateRegularStudyItem = async(req, res) => {
 dataController.deleteRegularStudy = async(req, res) => {
     try {
         const {id} = req.params;
-        const filePath = path.join(__dirname, '../../fe/src/data/regularStudy.json');
+        const study = await RegularStudy.findOneAndDelete({id});
         
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        data.projects = data.projects.filter(study => study.id !== id);
-        
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        if (!study) {
+            return res.status(404).json({status: 'fail', error: 'Study not found'});
+        }
         
         res.status(200).json({status: 'success', message: 'Regular study deleted successfully'});
     } catch(error) {

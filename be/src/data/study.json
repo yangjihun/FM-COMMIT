@@ -1,0 +1,70 @@
+{
+  "header": {
+    "title": "방학 스터디",
+    "description": "방학 기간 진행되는 스터디",
+    "icon": "book"
+  },
+  "description": "매주 화요일에 진행되는 방학 스터디입니다. 동아리 멤버들이 모여 파이썬 기초 과정 및 프로젝트를 진행합니다.",
+  "infoCards": [
+    {
+      "icon": "calendar",
+      "title": "기간",
+      "content": "2025.07.15 ~ 2025.08.19"
+    },
+    {
+      "icon": "users",
+      "title": "참여인원",
+      "content": "12명"
+    },
+    {
+      "icon": "clock",
+      "title": "일정",
+      "content": "매주 화요일 16:00"
+    },
+    {
+      "icon": "map-marker-alt",
+      "title": "장소",
+      "content": "가천관 601호"
+    }
+  ],
+  "studyContent": [
+    {
+      "icon": "python",
+      "title": "파이썬 기초 과정",
+      "description": "파이썬 기초 과정을 진행합니다."
+    },
+    {
+      "icon": "heart",
+      "title": "친목 다지기",
+      "description": "친목 다지기를 위한 네트워킹 행사를 진행합니다."
+    },
+    {
+      "icon": "rocket",
+      "title": "CS 과정",
+      "description": "CS 과정을 진행합니다."
+    },
+    {
+      "icon": "tools",
+      "title": "프로젝트 수행",
+      "description": "실제 서비스 개발을 진행합니다."
+    }
+  ],
+  "weeklyStudies": [
+    { "week": 1, "date": "7.15", "href": "/study/week1" },
+    { "week": 2, "date": "7.22", "href": "/study/week2" },
+    { "week": 3, "date": "8.5", "href": "/study/week3" },
+    { "week": 4, "date": "8.12", "href": "/study/week4" },
+    { "week": 5, "date": "8.19", "href": "/study/week5" }
+  ],
+  "stats": {
+    "totalSessions": "5회",
+    "basicTrack": {
+      "label": "기초반 진행 현황",
+      "current": "What is Python?"
+    },
+    "advancedTrack": {
+      "label": "심화반 진행 현황",
+      "current": "Data Structure"
+    }
+  }
+} 
