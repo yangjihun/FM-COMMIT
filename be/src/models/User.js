@@ -7,7 +7,8 @@ const userSchema = Schema({
     email:{type:String, required:true, unique:true},
     password:{type:String, required:true},
     name:{type:String, require:true},
-    level:{type:String, default:'customer'} //admin, user
+    level:{type:String, default:'customer'}, //admin, user
+    isBlocked:{type:Boolean, default:false}
 },{timestamps:true})
 userSchema.methods.toJSON = function() {
     const obj = this._doc;

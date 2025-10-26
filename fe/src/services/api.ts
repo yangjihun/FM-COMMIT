@@ -16,6 +16,7 @@ interface User {
   name: string;
   email: string;
   level: string;
+  isBlocked?: boolean;
 }
 
 // 인증 관련 API
@@ -84,6 +85,41 @@ export const userApi = {
       body: JSON.stringify({ targetUserId, level })
     });
 
+    return await response.json();
+  },
+
+  // 사용자 차단
+  blockUser: async (token: string, email: string, reason: string): Promise<ApiResponse<any>> => {
+    const response = await fetch(`${API_BASE_URL}/user/block`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, reason })
+    });
+    return await response.json();
+  },
+
+  unblockUser: async (token: string, email: string): Promise<ApiResponse<any>> => {
+    const response = await fetch(`${API_BASE_URL}/user/unblock`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email })
+    });
+    return await response.json();
+  },
+
+  getBlockedUsers: async (token: string): Promise<ApiResponse<any[]>> => {
+    const response = await fetch(`${API_BASE_URL}/user/blocked`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
     return await response.json();
   }
 };

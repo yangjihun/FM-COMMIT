@@ -5,6 +5,7 @@ const authController = {};
 const {OAuth2Client} = require('google-auth-library');
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const User = require('../models/User');
+const BlockedUser = require('../models/BlockedUser');
 const bcrypt = require('bcryptjs');
 
 authController.loginWithGoogle = async(req,res) => {
@@ -20,14 +21,22 @@ authController.loginWithGoogle = async(req,res) => {
         if (!email.endsWith('@gachon.ac.kr')) {
             throw new Error('gachon email이 아닙니다');
         }
-        let user = await User.findOne({email});
+        const normalizedEmail = email.toLowerCase();
+        const blockedEntry = await BlockedUser.findOne({email: normalizedEmail});
+        if (blockedEntry) {
+            throw new Error('차단된 사용자입니다. 관리자에게 문의하세요.');
+        }
+        let user = await User.findOne({email: normalizedEmail});
+        if (user && user.isBlocked) {
+            throw new Error('차단된 사용자입니다. 관리자에게 문의하세요.');
+        }
         if (!user) {
             const randomPassword = ''+Math.floor(Math.random() * 100000000);
             const salt = await bcrypt.genSalt(10);
             const newPassword = await bcrypt.hash(randomPassword, salt);
             user = new User({
                 name,
-                email,
+                email: normalizedEmail,
                 password: newPassword
             });
             await user.save();
@@ -47,6 +56,13 @@ authController.authenticate = async(req, res, next) => {
             return res.status(401).json({status:'fail', error: 'Access denied. No token provided.'});
         }
         const decoded = jwt.verify(token, JWT_SECRET_KEY);
+        const user = await User.findById(decoded._id);
+        if (!user) {
+            return res.status(401).json({status:'fail', error: 'Invalid token.'});
+        }
+        if (user.isBlocked) {
+            return res.status(403).json({status:'fail', error: 'Blocked user'});
+        }
         req.userId = decoded._id;
         next();
     } catch(error) {
@@ -100,7 +116,7 @@ authController.promoteToAdmin = async(req, res) => {
         }
         
         // 대상 유저 찾기
-        const targetUser = await User.findOne({email: targetEmail});
+        const targetUser = await User.findOne({email: targetEmail?.toLowerCase()});
         if (!targetUser) {
             return res.status(404).json({status:'fail', error: 'User not found'});
         }
@@ -133,7 +149,7 @@ authController.demoteFromAdmin = async(req, res) => {
         }
         
         // 대상 유저 찾기
-        const targetUser = await User.findOne({email: targetEmail});
+        const targetUser = await User.findOne({email: targetEmail?.toLowerCase()});
         if (!targetUser) {
             return res.status(404).json({status:'fail', error: 'User not found'});
         }

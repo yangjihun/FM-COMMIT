@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { dataApi, userApi, tokenManager } from '../services/api';
-import { ProjectForm, RegularStudyForm } from '../components/AdminForms';
+import { ProjectForm, RegularStudyForm, StudyForm, type StudyFormData } from '../components/AdminForms';
 import { useAuth } from '../contexts/AuthContext';
 
 interface Project {
@@ -41,18 +41,28 @@ interface AdminUser {
   email: string;
   level: string;
   createdAt: string;
+  isBlocked?: boolean;
+}
+
+interface BlockedUser {
+  _id: string;
+  email: string;
+  reason: string;
+  createdAt: string;
 }
 
 const AdminDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'projects' | 'study' | 'regular-study' | 'users'>('projects');
+  const [activeTab, setActiveTab] = useState<'projects' | 'study' | 'regular-study' | 'users' | 'blocked-users'>('projects');
   const [projects, setProjects] = useState<Project[]>([]);
   const [regularStudies, setRegularStudies] = useState<RegularStudy[]>([]);
-  const [studyData, setStudyData] = useState<any>(null);
+  const [studyData, setStudyData] = useState<StudyFormData | null>(null);
   const [users, setUsers] = useState<AdminUser[]>([]);
+  const [blockedUsers, setBlockedUsers] = useState<BlockedUser[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [editingItem, setEditingItem] = useState<any>(null);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [isStudyFormOpen, setIsStudyFormOpen] = useState(false);
   const navigate = useNavigate();
   const { user, isLoading } = useAuth();
 
@@ -102,11 +112,21 @@ const AdminDashboard: React.FC = () => {
         if (response.status === 'success') {
           setUsers(response.data || response.users || []);
         }
+      } else if (activeTab === 'blocked-users') {
+        await fetchBlockedUsers();
       }
     } catch (err) {
       setError('데이터를 불러오는 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchBlockedUsers = async () => {
+    if (!token) return;
+    const response = await userApi.getBlockedUsers(token);
+    if (response.status === 'success') {
+      setBlockedUsers(response.data || []);
     }
   };
 
@@ -165,6 +185,60 @@ const AdminDashboard: React.FC = () => {
     } catch (err) {
       setError('저장 중 오류가 발생했습니다.');
     }
+  };
+
+  const handleStudySave = async (data: StudyFormData) => {
+    if (!token) return;
+    try {
+      const response = await dataApi.updateStudy(token, data);
+      if (response.status === 'success') {
+        setStudyData(data);
+        setIsStudyFormOpen(false);
+      } else {
+        setError(response.error || '스터디 정보를 저장하는 중 오류가 발생했습니다.');
+      }
+    } catch (err) {
+      setError('스터디 정보를 저장하는 중 오류가 발생했습니다.');
+    }
+  };
+
+  const handleBlockUser = async (email: string) => {
+    if (!token) return;
+    const reason = prompt('차단 사유를 입력해주세요.', '정책 위반');
+    if (reason === null) return;
+    try {
+      const response = await userApi.blockUser(token, email, reason);
+      if (response.status === 'success') {
+        setUsers(prev => prev.map(u => u.email === email ? { ...u, isBlocked: true } : u));
+        await fetchBlockedUsers();
+      } else {
+        setError(response.error || '차단 처리 중 오류가 발생했습니다.');
+      }
+    } catch (err) {
+      setError('차단 처리 중 오류가 발생했습니다.');
+    }
+  };
+
+  const handleUnblockUser = async (email: string) => {
+    if (!token) return;
+    if (!confirm('차단을 해제하시겠습니까?')) return;
+    try {
+      const response = await userApi.unblockUser(token, email);
+      if (response.status === 'success') {
+        setUsers(prev => prev.map(u => u.email === email ? { ...u, isBlocked: false } : u));
+        await fetchBlockedUsers();
+      } else {
+        setError(response.error || '차단 해제 중 오류가 발생했습니다.');
+      }
+    } catch (err) {
+      setError('차단 해제 중 오류가 발생했습니다.');
+    }
+  };
+
+  const handleManualBlock = () => {
+    const email = prompt('차단할 이메일을 입력해주세요.');
+    if (!email) return;
+    handleBlockUser(email.trim());
   };
 
   const handleUserLevelChange = async (userId: string, newLevel: string) => {
@@ -260,6 +334,7 @@ const AdminDashboard: React.FC = () => {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">이름</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">이메일</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">권한</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">차단 여부</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">가입일</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작업</th>
             </tr>
@@ -283,29 +358,141 @@ const AdminDashboard: React.FC = () => {
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <span className={`px-2 py-1 text-xs rounded-full ${
+                    user.isBlocked 
+                      ? 'bg-red-100 text-red-700'
+                      : 'bg-green-100 text-green-700'
+                  }`}>
+                    {user.isBlocked ? '차단됨' : '사용 가능'}
+                  </span>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {new Date(user.createdAt).toLocaleDateString()}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  {user.level === 'admin' ? (
-                    <button
-                      onClick={() => handleUserLevelChange(user._id, 'customer')}
-                      className="text-orange-600 hover:text-orange-900"
-                    >
-                      일반 사용자로 변경
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => handleUserLevelChange(user._id, 'admin')}
-                      className="text-green-600 hover:text-green-900"
-                    >
-                      관리자로 승격
-                    </button>
-                  )}
+                  <div className="flex flex-wrap gap-3">
+                    {user.level === 'admin' ? (
+                      <button
+                        onClick={() => handleUserLevelChange(user._id, 'customer')}
+                        className="text-orange-600 hover:text-orange-900"
+                      >
+                        일반 사용자로 변경
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleUserLevelChange(user._id, 'admin')}
+                        className="text-green-600 hover:text-green-900"
+                      >
+                        관리자로 승격
+                      </button>
+                    )}
+                    {user.isBlocked ? (
+                      <button
+                        onClick={() => handleUnblockUser(user.email)}
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        차단 해제
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleBlockUser(user.email)}
+                        className="text-red-600 hover:text-red-800"
+                      >
+                        차단
+                      </button>
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+    </div>
+  );
+
+  const renderBlockedUsersTable = () => (
+    <div className="space-y-4">
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-medium">차단된 사용자</h3>
+        <button
+          onClick={handleManualBlock}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          이메일 직접 차단
+        </button>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">이메일</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">사유</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">차단일</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작업</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {blockedUsers.map((blocked) => (
+              <tr key={blocked._id}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{blocked.email}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{blocked.reason || '-'}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {new Date(blocked.createdAt).toLocaleDateString()}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button
+                    onClick={() => handleUnblockUser(blocked.email)}
+                    className="text-indigo-600 hover:text-indigo-900"
+                  >
+                    차단 해제
+                  </button>
+                </td>
+              </tr>
+            ))}
+            {blockedUsers.length === 0 && (
+              <tr>
+                <td colSpan={4} className="px-6 py-4 text-center text-sm text-gray-500">
+                  차단된 사용자가 없습니다.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
+  const renderStudySection = () => (
+    <div className="space-y-4">
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-medium">스터디 정보 관리</h3>
+        <button
+          onClick={() => setIsStudyFormOpen(true)}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          스터디 정보 수정
+        </button>
+      </div>
+      <div className="bg-white p-6 rounded-lg shadow space-y-4">
+        {studyData ? (
+          <>
+            <div>
+              <h4 className="font-semibold text-gray-800">{studyData.header.title}</h4>
+              <p className="text-gray-600 text-sm">{studyData.header.description}</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-600">
+              <div>정보 카드: {studyData.infoCards.length}개</div>
+              <div>주요 활동: {studyData.studyContent.length}개</div>
+              <div>주차 데이터: {studyData.weeklyStudies.length}개</div>
+            </div>
+            <pre className="bg-gray-50 p-4 rounded text-xs overflow-x-auto">
+              {JSON.stringify(studyData, null, 2)}
+            </pre>
+          </>
+        ) : (
+          <p className="text-sm text-gray-500">등록된 스터디 정보가 없습니다.</p>
+        )}
       </div>
     </div>
   );
@@ -398,7 +585,8 @@ const AdminDashboard: React.FC = () => {
               { key: 'projects', label: '프로젝트' },
               { key: 'study', label: '스터디' },
               { key: 'regular-study', label: '정기 스터디' },
-              { key: 'users', label: '사용자 관리' }
+              { key: 'users', label: '사용자 관리' },
+              { key: 'blocked-users', label: '차단 관리' }
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -433,16 +621,8 @@ const AdminDashboard: React.FC = () => {
               {activeTab === 'projects' && renderProjectsTable()}
               {activeTab === 'regular-study' && renderRegularStudyTable()}
               {activeTab === 'users' && renderUsersTable()}
-              {activeTab === 'study' && (
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium">스터디 정보 관리</h3>
-                  <div className="bg-white p-6 rounded-lg shadow">
-                    <pre className="whitespace-pre-wrap text-sm">
-                      {JSON.stringify(studyData, null, 2)}
-                    </pre>
-                  </div>
-                </div>
-              )}
+              {activeTab === 'study' && renderStudySection()}
+              {activeTab === 'blocked-users' && renderBlockedUsersTable()}
             </>
           )}
         </div>
@@ -467,6 +647,13 @@ const AdminDashboard: React.FC = () => {
         }}
         onSave={handleSave}
         editingItem={editingItem}
+      />
+
+      <StudyForm
+        isOpen={isStudyFormOpen}
+        onClose={() => setIsStudyFormOpen(false)}
+        onSave={handleStudySave}
+        initialData={studyData}
       />
     </div>
   );
