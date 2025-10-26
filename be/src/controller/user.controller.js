@@ -23,6 +23,19 @@ userController.createUser = async(req,res) => {
     }
 }
 
+userController.getUser = async(req,res) => {
+    try{
+        const {userId} = req;
+        const user = await User.findById(userId);
+        if (user) {
+            return res.status(200).json({status:'success', user});
+        }
+        throw new Error('Invalid token');
+    } catch(error) {
+        res.status(400).json({status:'fail', error:error.message});
+    }
+}
+
 userController.getAllUsers = async(req,res) => {
     try{
         const users = await User.find({}, 'name email level createdAt');
