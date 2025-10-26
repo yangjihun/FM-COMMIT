@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faProjectDiagram, 
@@ -8,7 +8,7 @@ import {
   faCode,
   faCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import projectsData from '../data/projects.json';
+import { publicApi } from '../services/api';
 
 interface Project {
   id: string;
@@ -31,14 +31,36 @@ interface Project {
 const Project: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await publicApi.getProjects();
+        if (response.status === 'success') {
+          setProjects(response.data || []);
+        } else {
+          setError(response.error || '프로젝트를 불러오지 못했습니다.');
+        }
+      } catch (err) {
+        setError('프로젝트를 불러오는 중 오류가 발생했습니다.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
   
-  const projects: Project[] = projectsData.projects;
-  
-  const categories = ['전체', ...Array.from(new Set(projects.map(p => p.category).flat()))];
+  const categories = ['전체', ...Array.from(new Set(projects.flatMap(p => p.category || [])))];
   
   const filteredProjects = selectedCategory === '전체' 
     ? projects 
-    : projects.filter(p => p.category.includes(selectedCategory));
+    : projects.filter(p => (p.category || []).includes(selectedCategory));
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -67,7 +89,10 @@ const Project: React.FC = () => {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('ko-KR', {
+    if (!dateString) return '미정';
+    const date = new Date(dateString);
+    if (Number.isNaN(date.getTime())) return dateString;
+    return date.toLocaleDateString('ko-KR', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -115,9 +140,19 @@ const Project: React.FC = () => {
             ))}
           </div>
 
+          {/* 상태 표시 */}
+          {isLoading && (
+            <div className="flex justify-center py-20">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+            </div>
+          )}
+          {error && (
+            <div className="text-center text-red-500 py-10">{error}</div>
+          )}
+
           {/* 프로젝트 그리드 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
+            {!isLoading && !error && filteredProjects.map((project) => (
               <div
                 key={project.id}
                 className={`rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer overflow-hidden ${project.id === '7' ? 'bg-[#FFD23A]' : 'bg-white'}`}
@@ -165,14 +200,14 @@ const Project: React.FC = () => {
 
                   {/* 기술 스택 */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.techStack.slice(0, 3).map((tech, index) => (
+                    {(project.techStack || []).slice(0, 3).map((tech, index) => (
                       <span key={index} className={`px-2 py-1 text-gray-700 text-xs rounded ${project.id === '7' ? 'bg-[#FFC20A] text-yellow-700' : 'bg-gray-100'}`}>
                         {tech}
                       </span>
                     ))}
-                    {project.techStack.length > 3 && (
+                    {(project.techStack?.length || 0) > 3 && (
                       <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-                        +{project.techStack.length - 3}
+                        +{(project.techStack?.length || 0) - 3}
                       </span>
                     )}
                   </div>
@@ -181,16 +216,20 @@ const Project: React.FC = () => {
                   <div className="flex items-center justify-between text-sm text-gray-500">
                     <div className="flex items-center gap-1">
                       <FontAwesomeIcon icon={faUsers} />
-                      <span>{project.team[0]} 외 {project.team.length - 1}명</span>
+                      <span>
+                        {project.team && project.team.length > 0
+                          ? `${project.team[0]}${project.team.length > 1 ? ` 외 ${project.team.length - 1}명` : ''}`
+                          : '팀 미정'}
+                      </span>
                     </div>
-                    <span>{project.category.join(', ')}</span>
+                    <span>{(project.category || []).join(', ') || '카테고리 미정'}</span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {filteredProjects.length === 0 && (
+          {!isLoading && !error && filteredProjects.length === 0 && (
             <div className="text-center py-20">
               <FontAwesomeIcon icon={faProjectDiagram} className="text-6xl text-gray-300 mb-4" />
               <p className="text-xl text-gray-500">해당 카테고리에 프로젝트가 없습니다.</p>

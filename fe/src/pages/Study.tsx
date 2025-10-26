@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -13,9 +14,77 @@ import {
   faCalendarWeek
 } from '@fortawesome/free-solid-svg-icons';
 import { faPython } from '@fortawesome/free-brands-svg-icons';
-import studyData from '../data/study.json';
+import { publicApi } from '../services/api';
+
+interface InfoCard {
+  icon: string;
+  title: string;
+  content: string;
+}
+
+interface StudyContent {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface WeeklyStudy {
+  week: number;
+  date: string;
+  href: string;
+}
+
+interface StudyStats {
+  totalSessions: string;
+  basicTrack: {
+    label: string;
+    current: string;
+  };
+  advancedTrack: {
+    label: string;
+    current: string;
+  };
+}
+
+interface StudyData {
+  header: {
+    title: string;
+    description: string;
+    icon: string;
+  };
+  description: string;
+  infoCards: InfoCard[];
+  studyContent: StudyContent[];
+  weeklyStudies: WeeklyStudy[];
+  stats: StudyStats;
+}
 
 const Study: React.FC = () => {
+  const [studyData, setStudyData] = useState<StudyData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchStudyData = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await publicApi.getStudy();
+        if (response.status === 'success') {
+          setStudyData(response.data || null);
+        } else {
+          setError(response.error || '스터디 데이터를 불러오지 못했습니다.');
+        }
+      } catch (err) {
+        setError('스터디 데이터를 불러오는 중 오류가 발생했습니다.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchStudyData();
+  }, []);
+
   const getIconComponent = (iconName: string) => {
     switch (iconName) {
       case 'calendar':
@@ -40,6 +109,28 @@ const Study: React.FC = () => {
         return faBook;
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (error || !studyData) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-6 text-center px-6">
+        <p className="text-xl text-gray-600">{error || '스터디 데이터를 찾을 수 없습니다.'}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="px-6 py-2 bg-primary text-white rounded-full"
+        >
+          다시 시도하기
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-16 break-words break-keep">

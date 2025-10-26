@@ -100,7 +100,7 @@ const AdminDashboard: React.FC = () => {
       } else if (activeTab === 'users') {
         const response = await userApi.getAllUsers(token);
         if (response.status === 'success') {
-          setUsers(response.data || []);
+          setUsers(response.data || response.users || []);
         }
       }
     } catch (err) {
@@ -137,19 +137,27 @@ const AdminDashboard: React.FC = () => {
     try {
       if (activeTab === 'projects') {
         if (editingItem) {
-          await dataApi.updateProject(token, editingItem.id, item);
-          setProjects(projects.map(p => p.id === editingItem.id ? item : p));
+          const response = await dataApi.updateProject(token, editingItem.id, item);
+          if (response.status === 'success' && response.data) {
+            setProjects(prev => prev.map(p => p.id === editingItem.id ? response.data : p));
+          }
         } else {
-          await dataApi.addProject(token, item);
-          setProjects([...projects, item]);
+          const response = await dataApi.addProject(token, item);
+          if (response.status === 'success' && response.data) {
+            setProjects(prev => [...prev, response.data]);
+          }
         }
       } else if (activeTab === 'regular-study') {
         if (editingItem) {
-          await dataApi.updateRegularStudyItem(token, editingItem.id, item);
-          setRegularStudies(regularStudies.map(s => s.id === editingItem.id ? item : s));
+          const response = await dataApi.updateRegularStudyItem(token, editingItem.id, item);
+          if (response.status === 'success' && response.data) {
+            setRegularStudies(prev => prev.map(s => s.id === editingItem.id ? response.data : s));
+          }
         } else {
-          await dataApi.addRegularStudy(token, item);
-          setRegularStudies([...regularStudies, item]);
+          const response = await dataApi.addRegularStudy(token, item);
+          if (response.status === 'success' && response.data) {
+            setRegularStudies(prev => [...prev, response.data]);
+          }
         }
       }
       setEditingItem(null);
@@ -216,7 +224,10 @@ const AdminDashboard: React.FC = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <button
-                    onClick={() => setEditingItem(project)}
+                    onClick={() => {
+                      setEditingItem(project);
+                      setShowAddForm(true);
+                    }}
                     className="text-indigo-600 hover:text-indigo-900 mr-3"
                   >
                     수정
@@ -339,7 +350,10 @@ const AdminDashboard: React.FC = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <button
-                    onClick={() => setEditingItem(study)}
+                    onClick={() => {
+                      setEditingItem(study);
+                      setShowAddForm(true);
+                    }}
                     className="text-indigo-600 hover:text-indigo-900 mr-3"
                   >
                     수정

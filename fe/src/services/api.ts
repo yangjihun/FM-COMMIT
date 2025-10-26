@@ -6,6 +6,7 @@ interface ApiResponse<T> {
   status: 'success' | 'fail';
   data?: T;
   user?: T;
+  users?: T;
   token?: string;
   error?: string;
 }
@@ -224,6 +225,30 @@ export const dataApi = {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
+    });
+    return await response.json();
+  }
+};
+
+// 공개 데이터 API
+export const publicApi = {
+  getProjects: async (): Promise<ApiResponse<any[]>> => {
+    const response = await fetch(`${API_BASE_URL}/public/projects`, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+    return await response.json();
+  },
+
+  getStudy: async (): Promise<ApiResponse<any>> => {
+    const response = await fetch(`${API_BASE_URL}/public/study`, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+    return await response.json();
+  },
+
+  getRegularStudy: async (): Promise<ApiResponse<any[]>> => {
+    const response = await fetch(`${API_BASE_URL}/public/regular-study`, {
+      headers: { 'Content-Type': 'application/json' }
     });
     return await response.json();
   }
