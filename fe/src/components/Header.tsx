@@ -129,7 +129,17 @@ const Header: React.FC = () => {
             <div className="flex items-center ml-8">
               {!isLoading && (
                 user ? (
-                  <UserProfile />
+                  <>
+                    {user.level === 'admin' && (
+                      <Link
+                        to="/admin"
+                        className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors duration-200 mr-3"
+                      >
+                        Admin
+                      </Link>
+                    )}
+                    <UserProfile />
+                  </>
                 ) : (
                   <LoginButton />
                 )
@@ -187,6 +197,15 @@ const Header: React.FC = () => {
                           <p className="text-xs text-gray-500">{user.email}</p>
                         </div>
                       </div>
+                      {user.level === 'admin' && (
+                        <Link
+                          to="/admin"
+                          onClick={closeMenu}
+                          className="block w-full text-left px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-700 rounded"
+                        >
+                          Admin 관리
+                        </Link>
+                      )}
                       <button
                         onClick={() => {
                           logout();

@@ -10,13 +10,22 @@ import Week3 from '../pages/summer-semester/Week3';
 import Week4 from '../pages/summer-semester/Week4';
 import Week5 from '../pages/summer-semester/Week5';
 import RegularStudy from "../pages/RegularStudy";
+import AdminLogin from "../pages/AdminLogin";
+import AdminDashboard from "../pages/AdminDashboard";
 import PrivateRoute from '../components/PrivateRoute';
+import AdminRoute from '../components/AdminRoute';
 
 const AppRouter: React.FC = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={
+                <AdminRoute>
+                    <AdminDashboard />
+                </AdminRoute>
+            } />
             <Route path="/study" element={
                 <PrivateRoute>
                     <Study />
