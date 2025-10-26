@@ -127,7 +127,7 @@ const Project: React.FC = () => {
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="max-w-64 max-h-48 object-cover"
+                    className="max-h-48 min-h-48 w-full h-full object-cover"
                   />
                   <div className="absolute top-4 left-4">
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(project.status)}`}>
