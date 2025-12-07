@@ -39,8 +39,8 @@ interface StatItem {
 const Home: React.FC = () => {
   const { user } = useAuth();
   const [stats, setStats] = useState<StatItem[]>([
-    { label: '멤버', value: 0, target: 29 },
-    { label: '프로젝트', value: 0, target: 7 },
+    { label: '멤버', value: 0, target: 31 },
+    { label: '프로젝트', value: 0, target: 5 },
     { label: '스터디', value: 0, target: 3 }
   ]);
 
