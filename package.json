@@ -1,7 +1,0 @@
-{
-  "name": "myapp-backend",
-  "scripts": {
-    "start": "npm --prefix be start",
-    "heroku-prebuild": "npm --prefix be install"
-  }
-}
