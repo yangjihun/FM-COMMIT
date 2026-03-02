@@ -30,6 +30,12 @@ const StatsSchema = new mongoose.Schema({
   }
 }, { _id: false });
 
+const HomeStatsSchema = new mongoose.Schema({
+  members: { type: Number, default: 31 },
+  projects: { type: Number, default: 5 },
+  studies: { type: Number, default: 3 }
+}, { _id: false });
+
 const StudySchema = new mongoose.Schema({
   header: {
     title: String,
@@ -40,7 +46,8 @@ const StudySchema = new mongoose.Schema({
   infoCards: { type: [InfoCardSchema], default: [] },
   studyContent: { type: [StudyContentSchema], default: [] },
   weeklyStudies: { type: [WeeklyStudySchema], default: [] },
-  stats: StatsSchema
+  stats: StatsSchema,
+  homeStats: { type: HomeStatsSchema, default: () => ({}) }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Study', StudySchema);

@@ -51,13 +51,24 @@ interface BlockedUser {
   createdAt: string;
 }
 
+interface ClubStats {
+  members: number;
+  projects: number;
+  studies: number;
+}
+
 const AdminDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'projects' | 'study' | 'regular-study' | 'users' | 'blocked-users'>('projects');
+  const [activeTab, setActiveTab] = useState<'projects' | 'study' | 'club' | 'regular-study' | 'users' | 'blocked-users'>('projects');
   const [projects, setProjects] = useState<Project[]>([]);
   const [regularStudies, setRegularStudies] = useState<RegularStudy[]>([]);
   const [studyData, setStudyData] = useState<StudyFormData | null>(null);
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<BlockedUser[]>([]);
+  const [clubStats, setClubStats] = useState<ClubStats>({
+    members: 31,
+    projects: 5,
+    studies: 3
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [editingItem, setEditingItem] = useState<any>(null);
@@ -106,6 +117,16 @@ const AdminDashboard: React.FC = () => {
         const response = await dataApi.getStudy(token);
         if (response.status === 'success') {
           setStudyData(response.data);
+        }
+      } else if (activeTab === 'club') {
+        const response = await dataApi.getStudy(token);
+        if (response.status === 'success') {
+          const stats = response.data?.homeStats || {};
+          setClubStats({
+            members: Number(stats.members) || 31,
+            projects: Number(stats.projects) || 5,
+            studies: Number(stats.studies) || 3
+          });
         }
       } else if (activeTab === 'users') {
         const response = await userApi.getAllUsers(token);
@@ -199,6 +220,18 @@ const AdminDashboard: React.FC = () => {
       }
     } catch (err) {
       setError('스터디 정보를 저장하는 중 오류가 발생했습니다.');
+    }
+  };
+
+  const handleClubSave = async () => {
+    if (!token) return;
+    try {
+      const response = await dataApi.updateStudy(token, { homeStats: clubStats });
+      if (response.status !== 'success') {
+        setError(response.error || '동아리 정보를 저장하는 중 오류가 발생했습니다.');
+      }
+    } catch (err) {
+      setError('동아리 정보를 저장하는 중 오류가 발생했습니다.');
     }
   };
 
@@ -497,6 +530,60 @@ const AdminDashboard: React.FC = () => {
     </div>
   );
 
+  const renderClubSection = () => (
+    <div className="space-y-4">
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-medium">동아리 관리</h3>
+        <button
+          onClick={handleClubSave}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          저장
+        </button>
+      </div>
+      <div className="bg-white p-6 rounded-lg shadow space-y-4">
+        <div className="grid md:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">멤버 수</label>
+            <input
+              type="number"
+              min={0}
+              value={clubStats.members}
+              onChange={(e) =>
+                setClubStats(prev => ({ ...prev, members: Number(e.target.value) || 0 }))
+              }
+              className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">프로젝트 수</label>
+            <input
+              type="number"
+              min={0}
+              value={clubStats.projects}
+              onChange={(e) =>
+                setClubStats(prev => ({ ...prev, projects: Number(e.target.value) || 0 }))
+              }
+              className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">스터디 수</label>
+            <input
+              type="number"
+              min={0}
+              value={clubStats.studies}
+              onChange={(e) =>
+                setClubStats(prev => ({ ...prev, studies: Number(e.target.value) || 0 }))
+              }
+              className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   const renderRegularStudyTable = () => (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
@@ -584,6 +671,7 @@ const AdminDashboard: React.FC = () => {
             {[
               { key: 'projects', label: '프로젝트' },
               { key: 'study', label: '스터디' },
+              { key: 'club', label: '동아리 관리' },
               { key: 'regular-study', label: '정기 스터디' },
               { key: 'users', label: '사용자 관리' },
               { key: 'blocked-users', label: '차단 관리' }
@@ -622,6 +710,7 @@ const AdminDashboard: React.FC = () => {
               {activeTab === 'regular-study' && renderRegularStudyTable()}
               {activeTab === 'users' && renderUsersTable()}
               {activeTab === 'study' && renderStudySection()}
+              {activeTab === 'club' && renderClubSection()}
               {activeTab === 'blocked-users' && renderBlockedUsersTable()}
             </>
           )}

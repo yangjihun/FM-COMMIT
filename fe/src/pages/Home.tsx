@@ -18,6 +18,7 @@ import { faDatabase } from '@fortawesome/free-solid-svg-icons';
 import Particles from '../components/Particles';
 import LoadingScreen from '../components/LoadingScreen';
 import { useAuth } from '../contexts/AuthContext';
+import { publicApi } from '../services/api';
 
 interface ActivityCard {
   id: string;
@@ -38,6 +39,7 @@ interface StatItem {
 
 const Home: React.FC = () => {
   const { user } = useAuth();
+  const [hasAnimated, setHasAnimated] = useState(false);
   const [stats, setStats] = useState<StatItem[]>([
     { label: '멤버', value: 0, target: 31 },
     { label: '프로젝트', value: 0, target: 5 },
@@ -101,10 +103,48 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
+    const loadHomeStats = async () => {
+      try {
+        const response = await publicApi.getStudy();
+        if (response.status !== 'success' || !response.data?.homeStats) {
+          return;
+        }
+
+        const { members, projects, studies } = response.data.homeStats;
+        const normalized = [
+          Number(members) || 0,
+          Number(projects) || 0,
+          Number(studies) || 0
+        ];
+
+        setStats(prev => prev.map((stat, index) => {
+          const target = normalized[index];
+          const currentValue = typeof stat.value === 'number' ? stat.value : Number(stat.value) || 0;
+
+          return {
+            ...stat,
+            value: currentValue > 0 ? target : 0,
+            target
+          };
+        }));
+      } catch (error) {
+        console.error('Failed to load home stats:', error);
+      }
+    };
+
+    loadHomeStats();
+  }, []);
+
+  useEffect(() => {
+    if (hasAnimated) {
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
             stats.forEach((stat, index) => {
               if (stat.target && stat.target > 0) {
                 animateCounter(index, stat.target);
@@ -122,7 +162,7 @@ const Home: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [stats, hasAnimated]);
 
   const getIconComponent = (iconName: string) => {
     switch (iconName) {
