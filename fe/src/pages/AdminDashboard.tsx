@@ -519,9 +519,65 @@ const AdminDashboard: React.FC = () => {
               <div>주요 활동: {studyData.studyContent.length}개</div>
               <div>주차 데이터: {studyData.weeklyStudies.length}개</div>
             </div>
-            <pre className="bg-gray-50 p-4 rounded text-xs overflow-x-auto">
-              {JSON.stringify(studyData, null, 2)}
-            </pre>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="border border-gray-200 rounded-lg p-4">
+                <h5 className="font-semibold text-gray-800 mb-3">정보 카드</h5>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  {studyData.infoCards.length > 0 ? (
+                    studyData.infoCards.map((card, index) => (
+                      <li key={`info-${index}`}>
+                        <span className="font-medium">{card.title}</span>
+                        <span className="text-gray-500 ml-2">{card.content}</span>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="text-gray-500">등록된 정보 카드가 없습니다.</li>
+                  )}
+                </ul>
+              </div>
+              <div className="border border-gray-200 rounded-lg p-4">
+                <h5 className="font-semibold text-gray-800 mb-3">주요 활동</h5>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  {studyData.studyContent.length > 0 ? (
+                    studyData.studyContent.map((content, index) => (
+                      <li key={`content-${index}`}>
+                        <span className="font-medium">{content.title}</span>
+                        <span className="text-gray-500 ml-2">{content.description}</span>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="text-gray-500">등록된 주요 활동이 없습니다.</li>
+                  )}
+                </ul>
+              </div>
+            </div>
+            <div className="border border-gray-200 rounded-lg p-4">
+              <h5 className="font-semibold text-gray-800 mb-3">주차 데이터</h5>
+              <div className="grid md:grid-cols-2 gap-2 text-sm text-gray-700">
+                {studyData.weeklyStudies.length > 0 ? (
+                  studyData.weeklyStudies.map((weekly, index) => (
+                    <div key={`week-${index}`} className="rounded bg-gray-50 px-3 py-2">
+                      <span className="font-medium">{weekly.week}주차</span>
+                      <span className="text-gray-500 ml-2">{weekly.date}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500">등록된 주차 데이터가 없습니다.</p>
+                )}
+              </div>
+            </div>
+            <div className="border border-gray-200 rounded-lg p-4">
+              <h5 className="font-semibold text-gray-800 mb-3">스터디 현황</h5>
+              <div className="grid md:grid-cols-3 gap-2 text-sm text-gray-700">
+                <div className="rounded bg-gray-50 px-3 py-2">총 세션: {studyData.stats?.totalSessions || '-'}</div>
+                <div className="rounded bg-gray-50 px-3 py-2">
+                  기초반: {studyData.stats?.basicTrack?.current || '-'}
+                </div>
+                <div className="rounded bg-gray-50 px-3 py-2">
+                  심화반: {studyData.stats?.advancedTrack?.current || '-'}
+                </div>
+              </div>
+            </div>
           </>
         ) : (
           <p className="text-sm text-gray-500">등록된 스터디 정보가 없습니다.</p>

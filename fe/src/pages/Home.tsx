@@ -49,7 +49,7 @@ const Home: React.FC = () => {
   const activityCards: ActivityCard[] = [
     {
       id: 'study',
-      title: '여름방학 스터디',
+      title: '방학 스터디',
       description: '파이썬 기초, 프로젝트',
       date: '2025.07.15 ~ 8.19',
       icon: 'book',
