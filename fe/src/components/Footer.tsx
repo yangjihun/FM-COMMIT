@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
           {/* 연락처 */}
           <div className="footer-contact">
             <h4 className="text-lg font-semibold mb-4">연락처</h4>
-            <p className="text-gray-400">Email: yjhn0410@gmail.com</p>
+            <p className="text-gray-400">Email: roychoi1012@naver.com</p>
           </div>
         </div>
 

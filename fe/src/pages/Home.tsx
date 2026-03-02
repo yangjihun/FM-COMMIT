@@ -332,12 +332,12 @@ const Home: React.FC = () => {
                 </div> */}
                 <div className="flex items-center justify-center gap-3 text-gray-700">
                   <FontAwesomeIcon icon={faEnvelope} className="text-primary" />
-                  <span>문의: yjhn0410@gmail.com</span>
+                  <span>문의: roychoi1012@naver.com</span>
                 </div>
               </div>
               
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfGXApRzG5jVc0RBcO0PhiHnNQsj3FSk6tylD_RpX4uw4EiQA/viewform?usp=header"
+                href="https://forms.gle/KLg2ETXziZSSRnjc6"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn bg-gradient-secondary h-[55px] text-white"

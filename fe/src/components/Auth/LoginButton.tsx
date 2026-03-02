@@ -2,17 +2,24 @@ import React, { useEffect, useRef } from 'react';
 
 interface LoginButtonProps {
   className?: string;
+  size?: 'medium' | 'large';
+  width?: number | string;
+  label?: string;
 }
 
-const LoginButton: React.FC<LoginButtonProps> = ({ className = '' }) => {
-  const buttonRef = useRef<HTMLDivElement>(null);
+const LoginButton: React.FC<LoginButtonProps> = ({
+  className = '',
+  size = 'medium',
+  width = '100%',
+  label = 'gachon 계정으로 로그인'
+}) => {
+  const googleButtonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const initializeGoogleSignIn = () => {
-      if ((window as any).google && (window as any).google.accounts && buttonRef.current) {
+      if ((window as any).google && (window as any).google.accounts && googleButtonRef.current) {
         try {
-          // 기존 버튼이 있다면 제거
-          buttonRef.current.innerHTML = '';
+          googleButtonRef.current.innerHTML = '';
 
           (window as any).google.accounts.id.initialize({
             client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || 'YOUR_GOOGLE_CLIENT_ID_HERE',
@@ -23,22 +30,18 @@ const LoginButton: React.FC<LoginButtonProps> = ({ className = '' }) => {
             }
           });
 
-          (window as any).google.accounts.id.renderButton(
-            buttonRef.current,
-            {
-              theme: 'outline',
-              size: 'medium',
-              text: 'signin_with',
-              width: '100%'
-            }
-          );
+          (window as any).google.accounts.id.renderButton(googleButtonRef.current, {
+            theme: 'outline',
+            size,
+            text: 'signin_with',
+            width
+          });
         } catch (error) {
-          console.error('Google Sign-In 초기화 실패:', error);
+          console.error('Google Sign-In initialization failed:', error);
         }
       }
     };
 
-    // Google 스크립트가 로드될 때까지 대기
     if ((window as any).google) {
       initializeGoogleSignIn();
     } else {
@@ -48,14 +51,25 @@ const LoginButton: React.FC<LoginButtonProps> = ({ className = '' }) => {
           initializeGoogleSignIn();
         }
       }, 100);
-      
+
       return () => clearInterval(checkGoogle);
     }
-  }, []);
+  }, [size, width]);
+
+  const buttonWidth = typeof width === 'number' ? `${width}px` : width;
+  const buttonHeightClass = size === 'large' ? 'h-11' : 'h-10';
+  const buttonTextClass = size === 'large' ? 'text-base' : 'text-sm';
 
   return (
     <div className={className}>
-      <div ref={buttonRef}></div>
+      <div className="relative" style={{ width: buttonWidth }}>
+        <div ref={googleButtonRef} className="absolute inset-0 z-20 opacity-0" aria-label={label}></div>
+        <div
+          className={`pointer-events-none flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 font-medium text-gray-700 shadow-sm ${buttonHeightClass} ${buttonTextClass}`}
+        >
+          {label}
+        </div>
+      </div>
     </div>
   );
 };

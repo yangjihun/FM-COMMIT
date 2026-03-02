@@ -65,7 +65,12 @@ const Login: React.FC = () => {
         
         <div className="space-y-6 flex flex-col items-center justify-center">
           <div className="text-center">
-            <div id="google-signin-button-login"></div>
+            <div className="relative" style={{ width: 300 }}>
+              <div id="google-signin-button-login" className="absolute inset-0 z-20 opacity-0"></div>
+              <div className="pointer-events-none flex h-11 w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 text-base font-medium text-gray-700 shadow-sm">
+                gachon 계정으로 로그인
+              </div>
+            </div>
           </div>
           
           <div className="text-center">
