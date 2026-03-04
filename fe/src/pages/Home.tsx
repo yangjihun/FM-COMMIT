@@ -225,7 +225,7 @@ const Home: React.FC = () => {
                     더 알아보기
                   </a>
                   <a 
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfGXApRzG5jVc0RBcO0PhiHnNQsj3FSk6tylD_RpX4uw4EiQA/viewform?usp=header"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSccbFQKlObe1GkSb4BdkvonoZnlLQ1C47ZxkJEhO7zl91Y9oA/viewform"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn border-2 border-white hover:bg-white hover:text-primary w-[140px] h-[55px] text-white"
@@ -377,7 +377,7 @@ const Home: React.FC = () => {
               </div>
               
               <a
-                href="https://forms.gle/KLg2ETXziZSSRnjc6"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSccbFQKlObe1GkSb4BdkvonoZnlLQ1C47ZxkJEhO7zl91Y9oA/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn bg-gradient-secondary h-[55px] text-white"
