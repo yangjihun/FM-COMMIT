@@ -41,7 +41,7 @@ const Home: React.FC = () => {
   const { user } = useAuth();
   const [hasAnimated, setHasAnimated] = useState(false);
   const [stats, setStats] = useState<StatItem[]>([
-    { label: '멤버', value: 0, target: 31 },
+    { label: '멤버', value: 0, target: 34 },
     { label: '프로젝트', value: 0, target: 5 },
     { label: '스터디', value: 0, target: 3 }
   ]);
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
       id: 'regular-study',
       title: '소그룹 스터디',
       description: '소그룹별로 진행되는 스터디',
-      date: '10.13 ~ 12.12',
+      date: '4.1 ~ 6.14',
       icon: 'tools',
       href: '/regular-study',
       status: 'completed'
